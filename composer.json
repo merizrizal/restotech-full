@@ -1,0 +1,13 @@
+{
+    "name": "synctech/restotech-full",
+    "description": "Restotech Full, Property of synctech.id",
+    "type": "yii2-extension",
+    "require": {        
+	"synctech/restotech-standard": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "restotech\\full\\": ""
+        }
+    }
+}
