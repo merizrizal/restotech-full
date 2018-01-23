@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\Mtable;
@@ -18,7 +18,7 @@ use restotech\standard\backend\components\Tools;
 /**
  * MtableController implements the CRUD actions for Mtable model.
  */
-class MtableController extends BackendController
+class MtableController extends \restotech\standard\backend\controllers\MtableController
 {
     public function behaviors()
     {
@@ -260,21 +260,5 @@ class MtableController extends BackendController
             'model' => $model,
             'catid' => $catid,
         ]);
-    }        
-
-    /**
-     * Finds the Mtable model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Mtable the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Mtable::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }

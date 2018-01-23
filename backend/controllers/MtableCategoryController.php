@@ -1,12 +1,11 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\MtableCategory;
 use restotech\standard\backend\models\search\MtableCategorySearch;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -16,7 +15,7 @@ use restotech\standard\backend\components\Tools;
 /**
  * MtableCategoryController implements the CRUD actions for MtableCategory model.
  */
-class MtableCategoryController extends BackendController
+class MtableCategoryController extends \restotech\standard\backend\controllers\MtableCategoryController
 {
     public function behaviors()
     {
@@ -181,21 +180,5 @@ class MtableCategoryController extends BackendController
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the MtableCategory model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return MtableCategory the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = MtableCategory::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }

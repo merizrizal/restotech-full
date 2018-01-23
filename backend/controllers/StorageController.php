@@ -1,13 +1,12 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\Storage;
 use restotech\standard\backend\models\search\StorageSearch;
 use restotech\standard\backend\models\Settings;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -15,8 +14,8 @@ use yii\widgets\ActiveForm;
 /**
  * StorageController implements the CRUD actions for Storage model.
  */
-class StorageController extends \restotech\standard\backend\controllers\BackendController
-{
+class StorageController extends \restotech\standard\backend\controllers\StorageController
+{    
     public function behaviors()
     {
         return array_merge(
@@ -30,7 +29,6 @@ class StorageController extends \restotech\standard\backend\controllers\BackendC
                 ],
             ]);
     }
-
     /**
      * Lists all Storage models.
      * @return mixed
@@ -39,7 +37,7 @@ class StorageController extends \restotech\standard\backend\controllers\BackendC
     {
         $searchModel = new StorageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -168,21 +166,5 @@ class StorageController extends \restotech\standard\backend\controllers\BackendC
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Storage model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Storage the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Storage::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }

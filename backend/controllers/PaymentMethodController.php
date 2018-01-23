@@ -1,13 +1,12 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\PaymentMethod;
 use restotech\standard\backend\models\search\PaymentMethodSearch;
 use restotech\standard\backend\models\Settings;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -16,7 +15,7 @@ use yii\widgets\ActiveForm;
 /**
  * PaymentMethodController implements the CRUD actions for PaymentMethod model.
  */
-class PaymentMethodController extends BackendController
+class PaymentMethodController extends \restotech\standard\backend\controllers\PaymentMethodController
 {
     public function behaviors()
     {
@@ -31,7 +30,6 @@ class PaymentMethodController extends BackendController
                 ],
             ]);
     }
-
     /**
      * Lists all PaymentMethod models.
      * @return mixed
@@ -170,21 +168,5 @@ class PaymentMethodController extends BackendController
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the PaymentMethod model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return PaymentMethod the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = PaymentMethod::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }

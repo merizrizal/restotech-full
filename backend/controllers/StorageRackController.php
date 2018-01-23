@@ -1,12 +1,11 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\StorageRack;
 use restotech\standard\backend\models\search\StorageRackSearch;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -14,7 +13,7 @@ use yii\widgets\ActiveForm;
 /**
  * StorageRackController implements the CRUD actions for StorageRack model.
  */
-class StorageRackController extends BackendController
+class StorageRackController extends \restotech\standard\backend\controllers\StorageRackController
 {
     public function behaviors()
     {
@@ -175,21 +174,5 @@ class StorageRackController extends BackendController
         
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $row;
-    }
-
-    /**
-     * Finds the StorageRack model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return StorageRack the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = StorageRack::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }
