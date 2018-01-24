@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\SupplierDelivery;
@@ -13,7 +13,6 @@ use restotech\standard\backend\models\Stock;
 use restotech\standard\backend\models\StockMovement;
 use restotech\standard\backend\models\Settings;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -24,8 +23,20 @@ use kartik\mpdf\Pdf;
 /**
  * SupplierDeliveryController implements the CRUD actions for SupplierDelivery model.
  */
-class SupplierDeliveryController extends BackendController
+class SupplierDeliveryController extends \restotech\standard\backend\controllers\SupplierDeliveryController
 {
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(
@@ -338,44 +349,9 @@ class SupplierDeliveryController extends BackendController
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the SupplierDelivery model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return SupplierDelivery the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id, $detail = false)
-    {
-        $model = null;
-
-        if (!$detail) {
-
-            $model = SupplierDelivery::findOne($id);
-        } else {
-
-            $model = SupplierDelivery::find()
-                    ->joinWith([
-                        'supplierDeliveryTrxes',
-                        'supplierDeliveryTrxes.item',
-                        'supplierDeliveryTrxes.itemSku',
-                        'supplierDeliveryTrxes.storage',
-                        'supplierDeliveryTrxes.storageRack',
-                    ])
-                    ->andWhere(['supplier_delivery.id' => $id])
-                    ->one();
-        }
-
-        if ($model !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
     public function actionGetSd($id) {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $data = SupplierDeliveryTrx::find()
                 ->joinWith([
@@ -393,7 +369,7 @@ class SupplierDeliveryController extends BackendController
 
     public function actionGetSdById($id) {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $data = SupplierDeliveryTrx::find()
                 ->joinWith([

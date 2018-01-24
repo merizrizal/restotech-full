@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\SupplierDeliveryInvoicePayment;
@@ -16,8 +16,20 @@ use kartik\mpdf\Pdf;
 /**
  * SupplierDeliveryInvoicePaymentController implements the CRUD actions for SupplierDeliveryInvoicePayment model.
  */
-class SupplierDeliveryInvoicePaymentController extends BackendController
+class SupplierDeliveryInvoicePaymentController extends \restotech\standard\backend\controllers\SupplierDeliveryInvoicePaymentController
 {
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(
@@ -168,22 +180,6 @@ class SupplierDeliveryInvoicePaymentController extends BackendController
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the SupplierDeliveryInvoicePayment model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return SupplierDeliveryInvoicePayment the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = SupplierDeliveryInvoicePayment::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
     
     public function actionReportPembayaranHutang() {

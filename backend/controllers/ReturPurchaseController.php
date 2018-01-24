@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\ReturPurchase;
@@ -12,7 +12,6 @@ use restotech\standard\backend\models\Stock;
 use restotech\standard\backend\models\StockMovement;
 use restotech\standard\backend\models\Settings;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -22,8 +21,20 @@ use yii\data\ActiveDataProvider;
 /**
  * ReturPurchaseController implements the CRUD actions for ReturPurchase model.
  */
-class ReturPurchaseController extends BackendController
+class ReturPurchaseController extends \restotech\standard\backend\controllers\ReturPurchaseController
 {
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(
@@ -313,45 +324,10 @@ class ReturPurchaseController extends BackendController
 
         return $this->redirect(['index']);
     }
-
-    /**
-     * Finds the ReturPurchase model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return ReturPurchase the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id, $detail = false)
-    {
-        $model = null;
-        
-        if (!$detail) {
-            
-            $model = ReturPurchase::findOne($id);
-        } else {
-            
-            $model = ReturPurchase::find()
-                    ->joinWith([
-                        'returPurchaseTrxes',
-                        'returPurchaseTrxes.item',
-                        'returPurchaseTrxes.itemSku',
-                        'returPurchaseTrxes.storage',
-                        'returPurchaseTrxes.storageRack',
-                    ])
-                    ->andWhere(['retur_purchase.id' => $id])
-                    ->one();
-        }
-        
-        if ($model !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
     
     public function actionGetRpById($id) {
         
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
         
         $data = ReturPurchaseTrx::find()
                 ->joinWith([

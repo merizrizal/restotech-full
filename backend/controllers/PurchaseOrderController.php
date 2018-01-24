@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\PurchaseOrder;
@@ -8,7 +8,6 @@ use restotech\standard\backend\models\search\PurchaseOrderSearch;
 use restotech\standard\backend\models\PurchaseOrderTrx;
 use restotech\standard\backend\models\Settings;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -19,8 +18,20 @@ use kartik\mpdf\Pdf;
 /**
  * PurchaseOrderController implements the CRUD actions for PurchaseOrder model.
  */
-class PurchaseOrderController extends BackendController
+class PurchaseOrderController extends \restotech\standard\backend\controllers\PurchaseOrderController
 {
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(
@@ -293,25 +304,9 @@ class PurchaseOrderController extends BackendController
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the PurchaseOrder model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return PurchaseOrder the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = PurchaseOrder::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
     public function actionGetPo($id) {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $data = PurchaseOrderTrx::find()
                 ->joinWith([

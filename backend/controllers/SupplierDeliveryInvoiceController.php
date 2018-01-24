@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\SupplierDeliveryInvoice;
@@ -10,7 +10,6 @@ use restotech\standard\backend\models\SupplierDeliveryTrx;
 use restotech\standard\backend\models\ReturPurchaseTrx;
 use restotech\standard\backend\models\Settings;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -20,8 +19,20 @@ use kartik\mpdf\Pdf;
 /**
  * SupplierDeliveryInvoiceController implements the CRUD actions for SupplierDeliveryInvoice model.
  */
-class SupplierDeliveryInvoiceController extends BackendController
+class SupplierDeliveryInvoiceController extends \restotech\standard\backend\controllers\SupplierDeliveryInvoiceController
 {
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(
@@ -213,22 +224,6 @@ class SupplierDeliveryInvoiceController extends BackendController
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the SupplierDeliveryInvoice model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return SupplierDeliveryInvoice the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = SupplierDeliveryInvoice::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
     
     public function actionReportHutang() {
