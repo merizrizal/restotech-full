@@ -15,12 +15,24 @@ use yii\widgets\ActiveForm;
  * StorageController implements the CRUD actions for Storage model.
  */
 class StorageController extends \restotech\standard\backend\controllers\StorageController
-{    
+{
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function behaviors()
     {
         return array_merge(
             $this->getAccess(),
-            [                
+            [
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -37,7 +49,7 @@ class StorageController extends \restotech\standard\backend\controllers\StorageC
     {
         $searchModel = new StorageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-    
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -64,38 +76,38 @@ class StorageController extends \restotech\standard\backend\controllers\StorageC
     public function actionCreate()
     {
         $model = new Storage();
-        
+
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;            
+            Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            
+
             $transaction = Yii::$app->db->beginTransaction();
             $flag = false;
-            
+
             $flag = $model->id = Settings::getTransNumber('id_gudang', 'ym', $model->nama_storage);
-                
+
             if ($flag && $model->save()) {
                 Yii::$app->session->setFlash('status', 'success');
                 Yii::$app->session->setFlash('message1', 'Tambah Data Sukses');
                 Yii::$app->session->setFlash('message2', 'Proses tambah data sukses. Data telah berhasil disimpan.');
-                
+
                 $transaction->commit();
-                
+
                 return $this->redirect(['update', 'id' => $model->id]);
             } else {
                 $model->setIsNewRecord(true);
-                
+
                 Yii::$app->session->setFlash('status', 'danger');
                 Yii::$app->session->setFlash('message1', 'Tambah Data Gagal');
-                Yii::$app->session->setFlash('message2', 'Proses tambah data gagal. Data gagal disimpan.');             
-                
+                Yii::$app->session->setFlash('message2', 'Proses tambah data gagal. Data gagal disimpan.');
+
                 $transaction->rollBack();
-            }            
+            }
         }
-         
+
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -110,9 +122,9 @@ class StorageController extends \restotech\standard\backend\controllers\StorageC
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
+
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;            
+            Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
 
@@ -121,15 +133,15 @@ class StorageController extends \restotech\standard\backend\controllers\StorageC
                 Yii::$app->session->setFlash('status', 'success');
                 Yii::$app->session->setFlash('message1', 'Update Sukses');
                 Yii::$app->session->setFlash('message2', 'Proses update sukses. Data telah berhasil disimpan.');
-                
+
                 return $this->redirect(['update', 'id' => $model->id]);
             } else {
                 Yii::$app->session->setFlash('status', 'danger');
                 Yii::$app->session->setFlash('message1', 'Update Gagal');
                 Yii::$app->session->setFlash('message2', 'Proses update gagal. Data gagal disimpan.');
-            }                        
+            }
         }
-         
+
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -144,21 +156,21 @@ class StorageController extends \restotech\standard\backend\controllers\StorageC
     public function actionDelete($id)
     {
         if (($model = $this->findModel($id)) !== false) {
-                        
+
             $flag = false;
             $error = '';
-            
+
             try {
                 $flag = $model->delete();
             } catch (yii\db\Exception $exc) {
                 $error = Yii::$app->params['errMysql'][$exc->errorInfo[1]];
             }
         }
-        
+
         if ($flag) {
             Yii::$app->session->setFlash('status', 'success');
             Yii::$app->session->setFlash('message1', 'Delete Sukses');
-            Yii::$app->session->setFlash('message2', 'Proses delete sukses. Data telah berhasil dihapus.');            
+            Yii::$app->session->setFlash('message2', 'Proses delete sukses. Data telah berhasil dihapus.');
         } else {
             Yii::$app->session->setFlash('status', 'danger');
             Yii::$app->session->setFlash('message1', 'Delete Gagal');

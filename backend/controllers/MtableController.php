@@ -20,6 +20,18 @@ use restotech\standard\backend\components\Tools;
  */
 class MtableController extends \restotech\standard\backend\controllers\MtableController
 {
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function behaviors()
     {
         return array_merge(

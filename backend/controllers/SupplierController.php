@@ -17,6 +17,18 @@ use yii\widgets\ActiveForm;
  */
 class SupplierController extends \restotech\standard\backend\controllers\SupplierController
 {
+    public function beforeAction($action) {
+        
+        if (parent::beforeAction($action)) {
+            
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+            
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(
