@@ -171,20 +171,5 @@ class StorageRackController extends \restotech\standard\backend\controllers\Stor
         }
 
         return $this->redirect(['index', 'sid' => $model->storage_id]);
-    }
-
-    public function actionGetStorageRack($id)
-    {
-        $data = StorageRack::find()->where(['storage_id' => $id])->orderBy('nama_rak')->asArray()->all();
-
-        $row = [];
-
-        foreach ($data as $key => $value) {
-            $row[$key]['id'] = $value['id'];
-            $row[$key]['text'] = $value['nama_rak'];
-        }
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return $row;
-    }
+    }    
 }

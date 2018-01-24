@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use restotech\standard\backend\models\Storage;
@@ -226,7 +225,7 @@ $jscript = '
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Url::toRoute(['stock/get-sku-item']) . '?id=" + $("#stock-item_id").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'stock/get-sku-item']) . '?id=" + $("#stock-item_id").select2("data")[0].id,
             success: function(response) {
                 itemSkuStock(response);
             }
@@ -274,7 +273,7 @@ $jscript = '
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Url::toRoute(['stock/get-storage']) . '?id=" + $("#stock-item_sku_id").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'stock/get-storage']) . '?id=" + $("#stock-item_sku_id").select2("data")[0].id,
             success: function(response) {
                 storageStock(response);
             }
@@ -288,7 +287,7 @@ $jscript = '
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Url::toRoute(['stock/get-sku-item-descent']) . '?iid=" + $("#stock-item_id").select2("data")[0].id + "&isid=" + $("#stock-item_sku_id").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'stock/get-sku-item-descent']) . '?iid=" + $("#stock-item_id").select2("data")[0].id + "&isid=" + $("#stock-item_sku_id").select2("data")[0].id,
             success: function(response) {
                 itemSku(response);
             }
@@ -324,7 +323,7 @@ $jscript = '
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Url::toRoute(['stock/get-storage-rack']) . '?sid=" + $("#stock-storage_id").select2("data")[0].id + "&isid=" + $("#stock-item_sku_id").select2("data")[0].id + "&iid=" + $("#stock-item_id").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'stock/get-storage-rack']) . '?sid=" + $("#stock-storage_id").select2("data")[0].id + "&isid=" + $("#stock-item_sku_id").select2("data")[0].id + "&iid=" + $("#stock-item_id").select2("data")[0].id,
             success: function(response) {
                 storageRackStock(response);
             }
@@ -376,7 +375,7 @@ $jscript = '
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Url::toRoute(['storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_to").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_to").select2("data")[0].id,
             success: function(response) {
                 storageRackTo(response);
             }
@@ -398,7 +397,7 @@ $jscript = '
             $.ajax({
                 dataType: "json",
                 cache: false,
-                url: "' . Url::toRoute(['item-sku/get-jumlah-convert']) . '?iid=" + $("#stock-item_id").select2("data")[0].id  + "&isidfrom=" + $("#stock-item_sku_id").val() + "&isidto=" + $("#stockmovement-item_sku_id").val(),
+                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'item-sku/get-jumlah-convert']) . '?iid=" + $("#stock-item_id").select2("data")[0].id  + "&isidfrom=" + $("#stock-item_sku_id").val() + "&isidto=" + $("#stockmovement-item_sku_id").val(),
                 success: function(response) {
                     
                     $("#stockmovement-jumlah").val(parseFloat($("#stock-jumlah_stok").val()) * parseFloat(response.jumlah));

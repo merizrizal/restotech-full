@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\Url;
 use restotech\standard\backend\components\NotificationDialog;
 
 $status = Yii::$app->session->getFlash('status');
@@ -50,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;  ?>
         $color = !empty($value->color) ? $value->color : '#000'; ?>
     
         <div class="col-lg-2">
-            <?= Html::a($value->nama_category, Url::toRoute(['mtable/table-layout', 'catid' => $value['id']]), ['class' => 'btn btn-block', 'style' => 'margin-top: 5px; color: white; background: ' . $color]) ?>
+            <?= Html::a($value->nama_category, Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'mtable/table-layout', 'catid' => $value['id']]), ['class' => 'btn btn-block', 'style' => 'margin-top: 5px; color: white; background: ' . $color]) ?>
         </div>
     
     <?php

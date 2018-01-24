@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use restotech\standard\backend\models\Item;
@@ -203,7 +202,7 @@ $jscript = '
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Url::toRoute(['item-sku/get-sku-item']) . '?id=" + $("#stockmovement-item_id").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'item-sku/get-sku-item']) . '?id=" + $("#stockmovement-item_id").select2("data")[0].id,
             success: function(response) {
                 itemSku(response);
             }
@@ -243,7 +242,7 @@ if ($flow == 'Outflow' || $flow == 'Transfer') {
             $.ajax({
                 dataType: "json",
                 cache: false,
-                url: "' . Url::toRoute(['storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_from").select2("data")[0].id,
+                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_from").select2("data")[0].id,
                 success: function(response) {
                     storageRackFrom(response);
                 }
@@ -284,7 +283,7 @@ if ($flow == 'Inflow' || $flow == 'Transfer') {
             $.ajax({
                 dataType: "json",
                 cache: false,
-                url: "' . Url::toRoute(['storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_to").select2("data")[0].id,
+                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_to").select2("data")[0].id,
                 success: function(response) {
                     storageRackTo(response);
                 }
@@ -304,7 +303,7 @@ if (!$model->isNewRecord || $status == 'danger') {
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Url::toRoute(['item-sku/get-sku-item']) . '?id=" + $("#stockmovement-item_id").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'item-sku/get-sku-item']) . '?id=" + $("#stockmovement-item_id").select2("data")[0].id,
             success: function(response) {                
                 itemSku(response);
                 $("input#stockmovement-item_sku_id").val("' . $model->item_sku_id . '").trigger("change");
@@ -318,7 +317,7 @@ if (!$model->isNewRecord || $status == 'danger') {
             $.ajax({
                 dataType: "json",
                 cache: false,
-                url: "' . Url::toRoute(['storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_from").select2("data")[0].id,
+                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_from").select2("data")[0].id,
                 success: function(response) {                
                     storageRackFrom(response);
                     $("input#stockmovement-storage_rack_from").val("' . $model->storage_rack_from . '").trigger("change");
@@ -333,7 +332,7 @@ if (!$model->isNewRecord || $status == 'danger') {
             $.ajax({
                 dataType: "json",
                 cache: false,
-                url: "' . Url::toRoute(['storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_to").select2("data")[0].id,
+                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'storage-rack/get-storage-rack']) . '?id=" + $("#stockmovement-storage_to").select2("data")[0].id,
                 success: function(response) {                
                     storageRackTo(response);
                     $("input#stockmovement-storage_rack_to").val("' . $model->storage_rack_to . '").trigger("change");
