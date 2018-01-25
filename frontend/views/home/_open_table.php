@@ -48,7 +48,7 @@ echo Html::hiddenInput('user_active', Yii::$app->session->get('user_data')['empl
 
 echo Html::hiddenInput('mtable_nama', $modelMtableSession->mtable->nama_meja, ['class' => 'mtable-nama session']);
 
-echo Html::hiddenInput('after_split', Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/view-session', 'id' => $modelMtableSession->mtable->id, 'cid' => $modelMtableSession->mtable->mtable_category_id, 'sessId' => $modelMtableSession->id]), ['id' => 'after-split']); ?>
+echo Html::hiddenInput('after_split', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/view-session', 'id' => $modelMtableSession->mtable->id, 'cid' => $modelMtableSession->mtable->mtable_category_id, 'sessId' => $modelMtableSession->id]), ['id' => 'after-split']); ?>
 
 <table id="temp-order" style="display: none">
     <tbody>
@@ -181,25 +181,25 @@ echo Html::hiddenInput('after_split', Yii::$app->urlManager->createUrl([Yii::$ap
                 <div style="padding: 0 10px 15px 10px">
                     <div class="row goleft">
                         <div class="col-md-12 col-sm-12 btnMenu">
-                            <a id="info-tamu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/info-tamu']) ?>"><i class="ion ion-ios-people" style="font-size: 16px; color: white"></i> Info Tamu</a>
-                            <a id="catatan" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/catatan']) ?>"><i class="ion ion-ios-list-outline" style="font-size: 16px; color: white"></i> Catatan Menu</a>
-                            <a id="discount-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/discount-menu']) ?>"><i class="ion ion-ios-pricetags" style="font-size: 16px; color: white"></i> Discount Menu</a>                            
-                            <a id="free-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/free-menu']) ?>"><i class="ion ion-bag" style="font-size: 16px; color: white"></i> Free Menu</a>
-                            <a id="queue-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/queue-menu']) ?>"><i class="ion ion-ios-paper-outline" style="font-size: 16px; color: white"></i> Antrikan Menu</a>                            
-                            <a id="void-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/void-menu']) ?>"><i class="ion ion-backspace" style="font-size: 16px; color: white"></i> Void Menu</a>                            
-                            <a id="split" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/split']) ?>"><i class="ion ion-android-done-all" style="font-size: 16px; color: white"></i> Split</a>                            
+                            <a id="info-tamu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/info-tamu']) ?>"><i class="ion ion-ios-people" style="font-size: 16px; color: white"></i> Info Tamu</a>
+                            <a id="catatan" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/catatan']) ?>"><i class="ion ion-ios-list-outline" style="font-size: 16px; color: white"></i> Catatan Menu</a>
+                            <a id="discount-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/discount-menu']) ?>"><i class="ion ion-ios-pricetags" style="font-size: 16px; color: white"></i> Discount Menu</a>                            
+                            <a id="free-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/free-menu']) ?>"><i class="ion ion-bag" style="font-size: 16px; color: white"></i> Free Menu</a>
+                            <a id="queue-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/queue-menu']) ?>"><i class="ion ion-ios-paper-outline" style="font-size: 16px; color: white"></i> Antrikan Menu</a>                            
+                            <a id="void-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/void-menu']) ?>"><i class="ion ion-backspace" style="font-size: 16px; color: white"></i> Void Menu</a>                            
+                            <a id="split" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/split']) ?>"><i class="ion ion-android-done-all" style="font-size: 16px; color: white"></i> Split</a>                            
                         </div>                                                   
                     </div>
                     
                     <div class="row goleft" style="margin-top: 10px">
                         <div class="col-md-12 col-sm-12 btnMenu">                            
-                            <a id="discount-bill" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/discount-bill']) ?>"><i class="ion ion-ios-pricetags" style="font-size: 16px; color: white"></i> Diskon Tagihan</a>
-                            <a id="transfer-table" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/transfer-table']) ?>"><i class="ion ion-arrow-return-right" style="font-size: 16px; color: white"></i> Transfer Meja</a>
-                            <a id="transfer-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/transfer-menu']) ?>"><i class="ion ion-arrow-swap" style="font-size: 16px; color: white"></i> Transfer Menu</a>
-                            <a id="join-table" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/join-table']) ?>"><i class="ion ion-arrow-shrink" style="font-size: 16px; color: white"></i> Gabung Meja</a>                                                                                    
-                            <a id="cashdrawer" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/cashdrawer']) ?>"><i class="ion ion-eject" style="font-size: 16px; color: white"></i> Cashdrawer</a>                                                        
-                            <a id="print-bill" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/print-bill']) ?>"><i class="ion ion-ios-printer" style="font-size: 16px; color: white"></i> Cetak Tagihan</a>                                                                                            
-                            <a id="close-table" class="btn btn-danger btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/close-table']) ?>"><i class="ion ion-ios-upload" style="font-size: 16px; color: white"></i> Close Table</a>                                                                                    
+                            <a id="discount-bill" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/discount-bill']) ?>"><i class="ion ion-ios-pricetags" style="font-size: 16px; color: white"></i> Diskon Tagihan</a>
+                            <a id="transfer-table" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/transfer-table']) ?>"><i class="ion ion-arrow-return-right" style="font-size: 16px; color: white"></i> Transfer Meja</a>
+                            <a id="transfer-menu" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/transfer-menu']) ?>"><i class="ion ion-arrow-swap" style="font-size: 16px; color: white"></i> Transfer Menu</a>
+                            <a id="join-table" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/join-table']) ?>"><i class="ion ion-arrow-shrink" style="font-size: 16px; color: white"></i> Gabung Meja</a>                                                                                    
+                            <a id="cashdrawer" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/cashdrawer']) ?>"><i class="ion ion-eject" style="font-size: 16px; color: white"></i> Cashdrawer</a>                                                        
+                            <a id="print-bill" class="btn btn-primary btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/print-bill']) ?>"><i class="ion ion-ios-printer" style="font-size: 16px; color: white"></i> Cetak Tagihan</a>                                                                                            
+                            <a id="close-table" class="btn btn-danger btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/close-table']) ?>"><i class="ion ion-ios-upload" style="font-size: 16px; color: white"></i> Close Table</a>                                                                                    
                         </div>                                                    
                     </div>
                 </div>
@@ -219,18 +219,18 @@ echo Html::hiddenInput('after_split', Yii::$app->urlManager->createUrl([Yii::$ap
                         </div>
                         <div class="col-sm-4 col-xs-4">                            
                             <p>
-                                <?= Html::a('<i class="ion ion-unlocked" style="font-size: 16px; color: white"></i> Unlock Bill', Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/unlock-bill']), ['id' => 'unlock-bill', 'class' => 'btn btn-success btn-lg ' . ($modelMtableSession->bill_printed ? '' : 'hidden')]) ?>                                
-                                <a id="payment" class="btn btn-danger btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/payment', 'id' => $modelMtableSession->id, 'isCorrection' => $isCorrection]) ?>"><i class="ion ion-cash" style="font-size: 16px; color: white"></i> Payment</a>
+                                <?= Html::a('<i class="ion ion-unlocked" style="font-size: 16px; color: white"></i> Unlock Bill', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/unlock-bill']), ['id' => 'unlock-bill', 'class' => 'btn btn-success btn-lg ' . ($modelMtableSession->bill_printed ? '' : 'hidden')]) ?>                                
+                                <a id="payment" class="btn btn-danger btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'home/payment', 'id' => $modelMtableSession->id, 'isCorrection' => $isCorrection]) ?>"><i class="ion ion-cash" style="font-size: 16px; color: white"></i> Payment</a>
                             </p>         
                         </div>
                         <div class="col-sm-4 col-xs-4 pull-right">
                             <p class="pull-right">
                                 
                                 <?php
-                                $url = [Yii::$app->params['module'] . 'home/table', 'id' => $modelMtableSession->mtable->mtable_category_id];
+                                $url = [Yii::$app->params['posModule']['full'] . 'home/table', 'id' => $modelMtableSession->mtable->mtable_category_id];
                                 
                                 if ($isCorrection) {
-                                    $url = [Yii::$app->params['module'] . 'home/correction-invoice'];
+                                    $url = [Yii::$app->params['posModule']['full'] . 'home/correction-invoice'];
                                 } ?>
                                 
                                 <?= Html::a('<i class="fa fa-undo" style="color: white"></i> Back', Yii::$app->urlManager->createUrl($url), ['id' => 'back', 'class' => 'btn btn-danger btn-lg']) ?>
@@ -247,8 +247,8 @@ echo Html::hiddenInput('after_split', Yii::$app->urlManager->createUrl([Yii::$ap
                             <div class="white-header" style="padding: 10px">
                                 <div class="row">
                                     <div class="col-md-7 goleft">
-                                        <a id="qty-plus" class="btn btn-primary btn-sm qty" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/change-qty']) ?>"><i class="fa fa-plus" style="font-size: 12px; color: white"></i></a>
-                                        <a id="qty-minus" class="btn btn-danger btn-sm qty" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'action/change-qty']) ?>"><i class="fa fa-minus" style="font-size: 12px; color: white"></i></a>
+                                        <a id="qty-plus" class="btn btn-primary btn-sm qty" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/change-qty']) ?>"><i class="fa fa-plus" style="font-size: 12px; color: white"></i></a>
+                                        <a id="qty-minus" class="btn btn-danger btn-sm qty" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'action/change-qty']) ?>"><i class="fa fa-minus" style="font-size: 12px; color: white"></i></a>
                                     </div>
                                     <div class="col-md-5 goright">
                                         <button id="select-all" class="btn btn-primary btn-sm" type="button">
@@ -471,7 +471,7 @@ echo Html::hiddenInput('after_split', Yii::$app->urlManager->createUrl([Yii::$ap
                                 
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <a id="add" class="add-condiment btn btn-success btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/condiment']) ?>"><i class="glyphicon glyphicon-plus"></i> Add Condiment</a>
+                                        <a id="add" class="add-condiment btn btn-success btn-lg" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'data/condiment']) ?>"><i class="glyphicon glyphicon-plus"></i> Add Condiment</a>
                                         <a id="cancel" class="add-condiment btn btn-danger btn-lg" style="display: none"><i class="glyphicon glyphicon-remove"></i> Cancel Condiment</a>
                                         <?= Html::hiddenInput('val_add_condiment', "", ['id' => 'val-add-condiment']) ?>
                                     </div>
@@ -515,7 +515,7 @@ $jscript = '
             $.ajax({
                 async: false,
                 type: "GET",
-                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/datetime']) . '",            
+                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'data/datetime']) . '",            
                 success: function(data) {
                     datetime = data.datetime;
                 }
@@ -531,7 +531,7 @@ $jscript = '
             cache: false,
             type: "POST",
             data: {"namaMenu" : namaMenu},
-            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/search-menu']) . '",
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'data/search-menu']) . '",
             beforeSend: function(xhr) {
                 $(".overlay").show();
                 $(".loading-img").show();
@@ -550,7 +550,7 @@ $jscript = '
         $.ajax({
             cache: false,
             type: "POST",
-            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/menu-category']) . '",
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'data/menu-category']) . '",
             beforeSend: function(xhr) {
                 $(".overlay").show();
                 $(".loading-img").show();
@@ -1894,7 +1894,7 @@ $jscriptAction = '
                 $.ajax({
                     cache: false,
                     type: "POST",
-                    url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/table-category']) . '",
+                    url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'data/table-category']) . '",
                     beforeSend: function(xhr) {
                         $("#container-table-list").children(".overlay").show();
                         $("#container-table-list").children(".loading-img").show();
@@ -2005,7 +2005,7 @@ $jscriptAction = '
                     $.ajax({
                         cache: false,
                         type: "POST",
-                        url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/table-category', 'isOpened' => true]) . '",
+                        url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'data/table-category', 'isOpened' => true]) . '",
                         beforeSend: function(xhr) {
                             $("#container-table-list").children(".overlay").show();
                             $("#container-table-list").children(".loading-img").show();
@@ -2147,7 +2147,7 @@ $jscriptAction = '
                 $.ajax({
                     cache: false,
                     type: "POST",
-                    url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/table-category', 'isOpened' => true]) . '",
+                    url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'data/table-category', 'isOpened' => true]) . '",
                     beforeSend: function(xhr) {
                         $("#container-table-list").children(".overlay").show();
                         $("#container-table-list").children(".loading-img").show();

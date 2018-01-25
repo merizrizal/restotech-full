@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\frontend\controllers;
+namespace restotech\full\frontend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\Mtable;
@@ -9,7 +9,6 @@ use restotech\standard\backend\models\MtableSession;
 use restotech\standard\backend\models\MtableOrderQueue;
 use restotech\standard\backend\models\MtableBooking;
 use restotech\standard\backend\models\SaleInvoice;
-use restotech\standard\backend\models\PaymentMethod;
 use restotech\standard\backend\models\Settings;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -17,7 +16,19 @@ use yii\data\ActiveDataProvider;
 /**
  * Home controller
  */
-class HomeController extends FrontendController {
+class HomeController extends \restotech\standard\frontend\controllers\HomeController {
+    
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/frontend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * @inheritdoc
@@ -30,19 +41,15 @@ class HomeController extends FrontendController {
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'load-menu' => ['post'],
                         'room' =>  ['post'],
                         'table' =>  ['post'],
                         'room-layout' =>  ['post'],
                         'open-table' =>  ['post'],
                         'view-session' =>  ['post'],
                         'open-table' =>  ['post'],
-                        'payment' =>  ['post'],
                         'opened-table' =>  ['post'],
                         'menu-queue' =>  ['post'],
                         'menu-queue-finished' =>  ['post'],
-                        'reprint-invoice' =>  ['post'],
-                        'reprint-invoice-submit' =>  ['post'],
                         'correction-invoice' =>  ['post'],
                         'correction-invoice-submit' =>  ['post'],
                         'booking' =>  ['post'],
@@ -52,25 +59,9 @@ class HomeController extends FrontendController {
             ]);
     }
 
-    public function actionIndex() {
-
-        return $this->render('index', [
-
-        ]);
-    }
-
-    public function actionLoadMenu() {
-
-        $this->layout = 'ajax';
-
-        return $this->render('_menu', [
-
-        ]);
-    }
-
     public function actionRoom() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelMtableCategory = MtableCategory::find()
                 ->andWhere(['mtable_category.not_active' => 0])
@@ -85,7 +76,7 @@ class HomeController extends FrontendController {
 
     public function actionTable($id) {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelMtableCategory = MtableCategory::find()
                     ->joinWith([
@@ -116,7 +107,7 @@ class HomeController extends FrontendController {
 
     public function actionRoomLayout() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelMtableCategory = MtableCategory::find()
                 ->andWhere(['mtable_category.not_active' => 0])
@@ -131,7 +122,7 @@ class HomeController extends FrontendController {
 
     public function actionViewSession($id, $cid, $sessId = null) {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelMtableSession = null;
 
@@ -145,7 +136,7 @@ class HomeController extends FrontendController {
         }
 
         if (count($modelMtableSession) == 1 || empty($sessId)) {
-            return $this->actionOpenTable($id, $cid, $sessId);
+            return $this->runAction('open-table', ['id' => $id, 'cid' => $cid, 'sessId' => $sessId]);
         }
 
         return $this->render('_view_session', [
@@ -156,7 +147,7 @@ class HomeController extends FrontendController {
 
     public function actionOpenTable($id, $cid, $sessId = null, $isCorrection = false) {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelSettings = Settings::getSettingsByName(['tax_amount', 'service_charge_amount']);
 
@@ -229,45 +220,9 @@ class HomeController extends FrontendController {
         ]);
     }
 
-    public function actionPayment($id, $isCorrection = false) {
-
-        $this->layout = 'ajax';
-
-        $modelMtableSession = MtableSession::find()
-                ->joinWith([
-                    'mtable',
-                    'mtableOrders' => function($query) {
-                        $query->andOnCondition(['mtable_order.parent_id' => null]);
-                    },
-                    'mtableOrders.menu',
-                    'mtableOrders.menu.menuCategory',
-                    'mtableOrders.menu.menuCategory.menuCategoryPrinters',
-                    'mtableOrders.menu.menuCategory.menuCategoryPrinters.printer0',
-                    'mtableOrders.mtableOrders' => function($query) {
-                        $query->from('mtable_order a');
-                    },
-                    'mtableOrders.mtableOrderQueue',
-                ])
-                ->andWhere(['mtable_session.id' => $id])
-                ->orderBy('mtable_order.id ASC')
-                ->one();
-
-         $modelPaymentMethod = PaymentMethod::find()
-                ->andWhere(['type' => 'sale'])
-                 ->andWhere(['not_active' => 0])
-                ->asArray()->all();
-
-        return $this->render('_payment', [
-            'modelMtableSession' => $modelMtableSession,
-            'modelPaymentMethod' => $modelPaymentMethod,
-            'settingsArray' => Settings::getSettingsByName('struk_invoice_', true),
-            'isCorrection' => $isCorrection,
-        ]);
-    }
-
     public function actionOpenedTable() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $post = Yii::$app->request->post();
 
@@ -307,7 +262,7 @@ class HomeController extends FrontendController {
 
     public function actionMenuQueue() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $query = MtableOrderQueue::find()
                 ->joinWith([
@@ -333,7 +288,7 @@ class HomeController extends FrontendController {
 
     public function actionMenuQueueFinished() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $query = MtableOrderQueue::find()
                 ->joinWith([
@@ -357,46 +312,9 @@ class HomeController extends FrontendController {
         ]);
     }
 
-    public function actionReprintInvoice() {
-
-        $this->layout = 'ajax';
-
-        return $this->render('_input_invoice', [
-            'type' => 'reprint',
-        ]);
-    }
-
-    public function actionReprintInvoiceSubmit() {
-
-        $this->layout = 'ajax';
-
-        $post = Yii::$app->request->post();
-
-        $modelSaleInvoice = SaleInvoice::find()
-                ->joinWith([
-                    'mtableSession',
-                    'mtableSession.mtable',
-                    'mtableSession.mtableOrders',
-                    'mtableSession.mtableOrders.menu',
-                    'saleInvoicePayments',
-                    'saleInvoicePayments.paymentMethod',
-                ])
-                ->andWhere(['sale_invoice.id' => $post['id']])->one();
-
-        if (empty($modelSaleInvoice)) {
-            throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
-        }
-
-        return $this->render('_reprint_invoice_submit', [
-            'modelSaleInvoice' => $modelSaleInvoice,
-            'modelMtableSession' => $modelSaleInvoice->mtableSession,
-            'settingsArray' => Settings::getSettingsByName('struk_invoice_', true),
-        ]);
-    }
-
     public function actionCorrectionInvoice() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         return $this->render('_input_invoice', [
             'type' => 'correction',
@@ -405,7 +323,7 @@ class HomeController extends FrontendController {
 
     public function actionCorrectionInvoiceSubmit() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $post = Yii::$app->request->post();
 
@@ -429,7 +347,7 @@ class HomeController extends FrontendController {
 
     public function actionBooking() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $query = MtableBooking::find()
                 ->joinWith([
@@ -450,7 +368,7 @@ class HomeController extends FrontendController {
 
     public function actionCreateBooking() {
 
-        $this->layout = 'ajax';
+        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         return $this->render('_create_booking', [
             'model' => new MtableBooking(),

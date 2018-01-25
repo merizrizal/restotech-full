@@ -4,7 +4,7 @@ use restotech\standard\backend\components\Tools;
 
 foreach ($modelMtableCategory as $mtableCategory): ?>            
 
-    <a id="room" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/table', 'id' => $mtableCategory['id']]) ?>">
+    <a id="room" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/table', 'id' => $mtableCategory['id']]) ?>">
         <div class="col-lg-3 col-md-3 col-sm-3 mb">
             <div class="content-panel pn">
                 <div id="profile-02" style="background: url('<?= Yii::getAlias('@uploadsUrl') . Tools::thumb('/img/mtable-category/', $mtableCategory['image'], 350, 350) ?>') no-repeat center top; background-size: cover;">

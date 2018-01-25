@@ -34,7 +34,7 @@ foreach ($modelMtableSession as $mtableSession) {
 
         <div class="row data">
             <div class="col-sm-12 col-xs-12 mt mb">
-                <?= Html::a('<i class="fa fa-undo"></i> Back', Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/table', 'id' => $modelMtable['mtable_category_id']]), ['id' => 'back', 'class' => 'btn btn-danger']) ?>
+                <?= Html::a('<i class="fa fa-undo"></i> Back', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/table', 'id' => $modelMtable['mtable_category_id']]), ['id' => 'back', 'class' => 'btn btn-danger']) ?>
             </div>                    
         </div>
     </div> 
@@ -62,7 +62,7 @@ foreach ($modelMtableSession as $mtableSession) {
                                 <b>Jumlah Tamu: <?= $mtableSession['jumlah_tamu'] ?></b>
                             </div>
                             <div class="col-md-2 col-sm-2">
-                                <?= Html::a('<i class="fa fa-sign-in" style="color: #FFF"></i>', Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/open-table', 'id' => $modelMtable['id'], 'cid' => $modelMtable['mtable_category_id'], 'sessId' => $mtableSession['id']]), ['id' => 'open', 'class' => 'btn btn-primary btn-sm pull-right']) ?>
+                                <?= Html::a('<i class="fa fa-sign-in" style="color: #FFF"></i>', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/open-table', 'id' => $modelMtable['id'], 'cid' => $modelMtable['mtable_category_id'], 'sessId' => $mtableSession['id']]), ['id' => 'open', 'class' => 'btn btn-primary btn-sm pull-right']) ?>
                             </div>
                         </div>
                     </div>

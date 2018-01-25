@@ -3,7 +3,7 @@ use yii\helpers\Html; ?>
 
 <div class="row">
     <div class="col-sm-12 mb">
-        <?= Html::a('<i class="fa fa-arrow-circle-left"></i> Back', Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/table-category', 'isOpened' => $isOpened]), ['id' => 'back-table', 'class' => 'mb']) ?>
+        <?= Html::a('<i class="fa fa-arrow-circle-left"></i> Back', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'data/table-category', 'isOpened' => $isOpened]), ['id' => 'back-table', 'class' => 'mb']) ?>
     </div>
 </div>
 

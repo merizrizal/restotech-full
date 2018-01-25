@@ -8,7 +8,7 @@ use restotech\standard\backend\components\Tools; ?>
             <div class="row">
                 <div class="col-lg-2 col-md-2" style="text-align: left">
                     <h5 style="padding-left: 5px">
-                        <?= Html::a('<i class="fa fa-arrow-circle-left"></i> Back', Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/room']), ['id' => 'back']) ?>
+                        <?= Html::a('<i class="fa fa-arrow-circle-left"></i> Back', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/room']), ['id' => 'back']) ?>
                     </h5>
                 </div>
                 <div class="col-lg-10 col-md-10">
@@ -69,7 +69,7 @@ use restotech\standard\backend\components\Tools; ?>
                         $tableStatus = 'Available'; 
                     } ?>
 
-                    <a id="table" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/view-session', 'id' => $tableId, 'cid' => $tableCid, 'sessId' => $sessId]) ?>" data-sess-id="<?= $sessId ?>">
+                    <a id="table" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/view-session', 'id' => $tableId, 'cid' => $tableCid, 'sessId' => $sessId]) ?>" data-sess-id="<?= $sessId ?>">
                         <!-- WEATHER-2 PANEL -->
                         <div class="col-lg-3 col-md-3 col-sm-3 mb">
                             <div id="mtable" class="weather-2 pn" style="height: 280px; cursor: pointer">                      

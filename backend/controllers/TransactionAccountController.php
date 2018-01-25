@@ -1,12 +1,11 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\TransactionAccount;
 use restotech\standard\backend\models\search\TransactionAccountSearch;
 
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -15,8 +14,20 @@ use yii\widgets\ActiveForm;
 /**
  * TransactionAccountController implements the CRUD actions for TransactionAccount model.
  */
-class TransactionAccountController extends BackendController
+class TransactionAccountController extends \restotech\standard\backend\controllers\TransactionAccountController
 {
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(
@@ -158,21 +169,5 @@ class TransactionAccountController extends BackendController
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the TransactionAccount model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return TransactionAccount the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = TransactionAccount::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }

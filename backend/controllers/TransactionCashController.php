@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\standard\backend\controllers;
+namespace restotech\full\backend\controllers;
 
 use Yii;
 use restotech\standard\backend\models\TransactionCash;
@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 /**
  * TransactionCashController implements the CRUD actions for TransactionCash model.
  */
-class TransactionCashController extends BackendController
+class TransactionCashController extends \restotech\standard\backend\controllers\TransactionAccountController
 {
     private $title = [];  
     
@@ -25,6 +25,18 @@ class TransactionCashController extends BackendController
         
         $this->title['Cash-In'] = 'Kas Masuk';
         $this->title['Cash-Out'] = 'Kas Keluar';
+    }
+    
+    public function beforeAction($action) {
+
+        if (parent::beforeAction($action)) {
+
+            $this->setViewPath('@restotech/full/backend/views/' . $action->controller->id);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function behaviors()
