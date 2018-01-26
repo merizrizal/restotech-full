@@ -69,7 +69,7 @@ echo Html::hiddenInput('mtable_nama', $modelMtableSession->mtable->nama_meja, ['
                                         <a id="reprint" class="btn btn-success" href=""><i class="fa fa-print" style="font-size: 12px; color: white"></i> Reprint</a>
                                     </div>
                                     <div class="col-md-6 goright">
-                                        <a id="back" class="btn btn-danger" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/reprint-invoice']) ?>"><i class="fa fa-undo" style="font-size: 12px; color: white"></i> Back</a>
+                                        <a id="back" class="btn btn-danger" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'home/reprint-invoice']) ?>"><i class="fa fa-undo" style="font-size: 12px; color: white"></i> Back</a>
                                     </div>
                                 </div>                                
                             </div>
@@ -277,7 +277,7 @@ echo Html::hiddenInput('mtable_nama', $modelMtableSession->mtable->nama_meja, ['
                                         <a id="reprint" class="btn btn-success" href=""><i class="fa fa-print" style="font-size: 12px; color: white"></i> Reprint</a>
                                     </div>
                                     <div class="col-md-6 goright">
-                                        <a id="back" class="btn btn-danger" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/reprint-invoice']) ?>"><i class="fa fa-undo" style="font-size: 12px; color: white"></i> Back</a>
+                                        <a id="back" class="btn btn-danger" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'home/reprint-invoice']) ?>"><i class="fa fa-undo" style="font-size: 12px; color: white"></i> Back</a>
                                     </div>
                                 </div>                                
                             </div>
@@ -306,7 +306,7 @@ $jscript = '
             $.ajax({
                 async: false,
                 type: "GET",
-                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/datetime']) . '",            
+                url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'data/datetime']) . '",            
                 success: function(data) {
                     datetime = data.datetime;
                 }

@@ -16,7 +16,7 @@ $this->title = 'Booking'; ?>
         <div class="row" style="margin: 0 15px">
             <div class="col-md-12">
                 
-                <?= Html::a('Create Booking', [Yii::$app->params['module'] . 'home/create-booking'], ['id' => 'create-booking', 'class' => 'btn btn-primary']) ?>
+                <?= Html::a('Create Booking', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule'] . 'home/create-booking']), ['id' => 'create-booking', 'class' => 'btn btn-primary']) ?>
                 
             </div>
             
@@ -48,7 +48,7 @@ $this->title = 'Booking'; ?>
                                     'check' =>  function($url, $model, $key) {                                                                                
                                         
                                         return '<div class="btn-group btn-group-xs" role="group" style="width: 75px">' .
-                                                    Html::a('<i class="fa fa-check"></i>', [Yii::$app->params['module'] . 'action/booking-open', 'id' => $model->id, 'tid' => $model->mtable_id], [
+                                                    Html::a('<i class="fa fa-check"></i>', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/booking-open', 'id' => $model->id, 'tid' => $model->mtable_id]), [
                                                         'id' => 'check',
                                                         'class' => 'btn btn-success',
                                                         'data-toggle' => 'tooltip',

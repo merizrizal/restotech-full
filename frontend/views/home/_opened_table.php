@@ -175,7 +175,7 @@ $this->title = 'Meja Terisi'; ?>
 
                                         return '<div class="btn-group btn-group-xs" role="group" style="width: 75px">' .
                                                     Html::a('<i class="fa fa-external-link-square"></i>',
-                                                        Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/view-session', 'id' => $tableId, 'cid' => $tableCid, 'sessId' => $sessId]),
+                                                        Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/view-session', 'id' => $tableId, 'cid' => $tableCid, 'sessId' => $sessId]),
                                                         [
                                                             'id' => 'check',
                                                             'class' => 'btn btn-success',

@@ -24,9 +24,9 @@ $this->title = 'Create Booking'; ?>
         <div class="row"style="margin: 0 15px">
             <div class="col-md-12">
                 
-                <?= Html::a('<i class="fa fa-undo"></i> Back', [Yii::$app->params['module'] . 'home/booking'], ['id' => 'back', 'class' => 'btn btn-danger']) ?>
+                <?= Html::a('<i class="fa fa-undo"></i> Back', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/booking']), ['id' => 'back', 'class' => 'btn btn-danger']) ?>
                 
-                <?= Html::a('<i class="fa fa-check"></i> Create', [Yii::$app->params['module'] . 'action/create-booking'], ['id' => 'create-booking', 'class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fa fa-check"></i> Create', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/create-booking']), ['id' => 'create-booking', 'class' => 'btn btn-primary']) ?>
                 
             </div>
             
@@ -107,7 +107,7 @@ $jscript = '
         $.ajax({
             dataType: "json",
             cache: false,
-            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/get-mtable']) . '?id=" + $("#mtable-mtable_category_id").select2("data")[0].id,
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'data/get-mtable']) . '?id=" + $("#mtable-mtable_category_id").select2("data")[0].id,
             success: function(response) {
                 mtable(response);
             }

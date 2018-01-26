@@ -19,7 +19,7 @@ use yii\helpers\Html; ?>
             $color = !empty($mtableCategory['color']) ? $mtableCategory['color'] : '#000'; ?>
 
             <div class="col-lg-2">
-                <?= Html::a($mtableCategory['nama_category'], Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/table-layout', 'id' => $mtableCategory['id']]), ['class' => 'btn btn-block room', 'style' => 'margin-top: 5px; color: white; background: ' . $color]) ?>
+                <?= Html::a($mtableCategory['nama_category'], Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'data/table-layout', 'id' => $mtableCategory['id']]), ['class' => 'btn btn-block room', 'style' => 'margin-top: 5px; color: white; background: ' . $color]) ?>
             </div>
 
         <?php
@@ -56,7 +56,7 @@ $jscript = '
             data: {
                 "id": idTable
             },
-            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'data/info-table']) . '",
+            url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'data/info-table']) . '",
             beforeSend: function(xhr) {
                 $(".overlay").show();
                 $(".loading-img").show();

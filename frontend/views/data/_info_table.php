@@ -93,7 +93,7 @@ use restotech\standard\backend\components\Tools; ?>
 
 <div class="row" style="padding: 0 15px">
     <div class="col-lg-12 mt">
-        <a id="table" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/view-session', 'id' => $tableId, 'cid' => $tableCid, 'sessId' => $sessId]) ?>" data-sess-id="<?= $sessId ?>" class="btn btn-primary btn-lg btn-block">
+        <a id="table" href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/view-session', 'id' => $tableId, 'cid' => $tableCid, 'sessId' => $sessId]) ?>" data-sess-id="<?= $sessId ?>" class="btn btn-primary btn-lg btn-block">
             <i class="fa fa-external-link"></i> View Table
         </a>
     </div>

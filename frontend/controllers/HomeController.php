@@ -316,8 +316,9 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
 
         $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
-        return $this->render('_input_invoice', [
+        return $this->render('@restotech/standard/frontend/views/home/_input_invoice', [
             'type' => 'correction',
+            'version' => 'full',
         ]);
     }
 
