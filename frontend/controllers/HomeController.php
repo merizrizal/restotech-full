@@ -17,7 +17,7 @@ use yii\data\ActiveDataProvider;
  * Home controller
  */
 class HomeController extends \restotech\standard\frontend\controllers\HomeController {
-    
+
     public function beforeAction($action) {
 
         if (parent::beforeAction($action)) {
@@ -44,9 +44,7 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
                         'room' =>  ['post'],
                         'table' =>  ['post'],
                         'room-layout' =>  ['post'],
-                        'open-table' =>  ['post'],
                         'view-session' =>  ['post'],
-                        'open-table' =>  ['post'],
                         'opened-table' =>  ['post'],
                         'menu-queue' =>  ['post'],
                         'menu-queue-finished' =>  ['post'],
@@ -142,81 +140,6 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
         return $this->render('_view_session', [
             'modelMtable' => Mtable::find()->andWhere(['id' => $id])->asArray()->one(),
             'modelMtableSession' => $modelMtableSession,
-        ]);
-    }
-
-    public function actionOpenTable($id, $cid, $sessId = null, $isCorrection = false) {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
-
-        $modelSettings = Settings::getSettingsByName(['tax_amount', 'service_charge_amount']);
-
-        $modelMtableSession = null;
-
-        if (empty($sessId)) {
-
-            $transaction = Yii::$app->db->beginTransaction();
-
-            $modelMtableSession = MtableSession::find()
-                    ->andWhere([
-                        'mtable_id' => $id,
-                        'is_closed' => 0
-                    ])->asArray()->one();
-
-            if (empty($modelMtableSession)) {
-
-                $modelMtableSession = new MtableSession();
-                $modelMtableSession->mtable_id = $id;
-                $modelMtableSession->nama_tamu = '';
-                $modelMtableSession->catatan = '';
-                $modelMtableSession->pajak = $modelMtableSession->mtable->not_ppn ? 0 :$modelSettings['tax_amount'] ;
-                $modelMtableSession->service_charge = $modelMtableSession->mtable->not_service_charge ? 0 : $modelSettings['service_charge_amount'];
-                $modelMtableSession->opened_at = Yii::$app->formatter->asDatetime(time());
-                $modelMtableSession->user_opened = Yii::$app->user->identity->id;
-
-                if ($modelMtableSession->save()) {
-
-                    $transaction->commit();
-                } else {
-
-                    return $this->render('_error', [
-                        'tableCategoryId' => $cid,
-                        'title' => 'Error open table',
-                        'message' => 'Telah terjadi kesalahan saat proses open table.'
-                    ]);
-
-                    $transaction->rollBack();
-                }
-            } else {
-                $sessId = $modelMtableSession['id'];
-
-                $transaction->rollBack();
-            }
-        }
-
-        $modelMtableSession = MtableSession::find()
-                ->joinWith([
-                    'mtable',
-                    'mtableOrders' => function($query) {
-                        $query->andOnCondition(['mtable_order.parent_id' => null]);
-                    },
-                    'mtableOrders.menu',
-                    'mtableOrders.menu.menuCategory',
-                    'mtableOrders.menu.menuCategory.menuCategoryPrinters',
-                    'mtableOrders.menu.menuCategory.menuCategoryPrinters.printer0',
-                    'mtableOrders.mtableOrders' => function($query) {
-                        $query->from('mtable_order a');
-                    },
-                    'mtableOrders.mtableOrderQueue',
-                ])
-                ->andWhere(['mtable_session.id' => !empty($sessId) ? $sessId : $modelMtableSession->id])
-                ->orderBy('mtable_order.id ASC')
-                ->one();
-
-        return $this->render('_open_table', [
-            'modelMtableSession' => $modelMtableSession,
-            'settingsArray' => Settings::getSettingsByName('struk_', true),
-            'isCorrection' => $isCorrection,
         ]);
     }
 
