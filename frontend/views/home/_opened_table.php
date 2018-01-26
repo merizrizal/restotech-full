@@ -27,12 +27,12 @@ $this->title = 'Meja Terisi'; ?>
                         <?php
                         if (!empty($namaTamu)): ?>
 
-                            <a href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/opened-table']) ?>" class="btn btn-danger search-nama-tamu clear"><i class="fa fa-close"></i></a>
+                            <a href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/opened-table']) ?>" class="btn btn-danger search-nama-tamu clear"><i class="fa fa-close"></i></a>
 
                         <?php
                         endif; ?>
 
-                        <a href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['module'] . 'home/opened-table']) ?>" class="btn btn-success search-nama-tamu"><i class="fa fa-search"></i></a>
+                        <a href="<?= Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/opened-table']) ?>" class="btn btn-success search-nama-tamu"><i class="fa fa-search"></i></a>
                     </span>
                 </div>
             </div>
