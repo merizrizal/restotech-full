@@ -16,7 +16,7 @@ $this->title = 'Booking'; ?>
         <div class="row" style="margin: 0 15px">
             <div class="col-md-12">
                 
-                <?= Html::a('Create Booking', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule'] . 'home/create-booking']), ['id' => 'create-booking', 'class' => 'btn btn-primary']) ?>
+                <?= Html::a('Create Booking', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'home/create-booking']), ['id' => 'create-booking', 'class' => 'btn btn-primary']) ?>
                 
             </div>
             
