@@ -92,7 +92,7 @@ $this->title = 'Meja Terisi'; ?>
                                     $str = '';
 
                                     if (count($model->mtableSessions) > 0) {
-                                        $str = $model->mtableSessions[0]->userOpened->kdKaryawan->nama;
+                                        $str = !empty($model->mtableSessions[0]->userOpened) ? $model->mtableSessions[0]->userOpened->kdKaryawan->nama : '';
                                     }
 
                                     return $str;

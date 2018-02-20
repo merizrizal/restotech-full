@@ -1,6 +1,6 @@
 <?php
 
-namespace restotech\full\frontend\controllers;
+namespace restotech\full\api\controllers\frontend;
 
 use Yii;
 use restotech\standard\backend\models\Mtable;
@@ -15,19 +15,7 @@ use yii\data\ActiveDataProvider;
 /**
  * Home controller
  */
-class HomeController extends \restotech\standard\frontend\controllers\HomeController {
-
-    public function beforeAction($action) {
-
-        if (parent::beforeAction($action)) {
-
-            $this->setViewPath('@restotech/full/frontend/views/' . $action->controller->id);
-
-            return true;
-        } else {
-            return false;
-        }
-    }
+class HomeController extends \restotech\standard\api\controllers\frontend\HomeController {
 
     /**
      * @inheritdoc
@@ -35,7 +23,7 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
     public function behaviors() {
 
         return array_merge(
-            $this->getAccess(),
+            [],
             [
                 'verbs' => [
                     'class' => VerbFilter::className(),
@@ -58,22 +46,18 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
 
     public function actionRoom() {
 
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
-
         $modelMtableCategory = MtableCategory::find()
                 ->andWhere(['mtable_category.not_active' => 0])
                 ->andWhere(['mtable_category.is_deleted' => 0])
                 ->orderBy('nama_category')
                 ->asArray()->all();
 
-        return $this->render('_room', [
+        return [
             'modelMtableCategory' => $modelMtableCategory,
-        ]);
+        ];
     }
 
     public function actionTable($id) {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelMtableCategory = MtableCategory::find()
                     ->joinWith([
@@ -97,14 +81,12 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
                     ->andWhere(['mtable_category.not_active' => 0])
                     ->asArray()->one();
 
-        return $this->render('_table', [
+        return [
             'modelMtableCategory' => $modelMtableCategory,
-        ]);
+        ];
     }
 
     public function actionRoomLayout() {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelMtableCategory = MtableCategory::find()
                 ->andWhere(['mtable_category.not_active' => 0])
@@ -112,14 +94,12 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
                 ->orderBy('nama_category')
                 ->asArray()->all();
 
-        return $this->render('_room_layout', [
+        return [
             'modelMtableCategory' => $modelMtableCategory,
-        ]);
+        ];
     }
 
     public function actionViewSession($id, $cid, $sessId = null) {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $modelMtableSession = null;
 
@@ -136,15 +116,13 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
             return $this->runAction('open-table', ['id' => $id, 'cid' => $cid, 'sessId' => $sessId]);
         }
 
-        return $this->render('_view_session', [
+        return [
             'modelMtable' => Mtable::find()->andWhere(['id' => $id])->asArray()->one(),
             'modelMtableSession' => $modelMtableSession,
-        ]);
+        ];
     }
 
     public function actionOpenedTable() {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $post = Yii::$app->request->post();
 
@@ -176,15 +154,13 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
             'pagination' => false,
         ]);
 
-        return $this->render('_opened_table', [
-            'dataProvider' => $dataProvider,
+        return [
+            'dataProvider' => $this->serializeData($dataProvider),
             'namaTamu' => $namaTamu,
-        ]);
+        ];
     }
 
     public function actionMenuQueue() {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $query = MtableOrderQueue::find()
                 ->joinWith([
@@ -203,14 +179,12 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
             'pagination' => false,
         ]);
 
-        return $this->render('_menu_queue', [
-            'dataProvider' => $dataProvider,
-        ]);
+        return [
+            'dataProvider' => $this->serializeData($dataProvider),
+        ];
     }
 
     public function actionMenuQueueFinished() {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $query = MtableOrderQueue::find()
                 ->joinWith([
@@ -229,24 +203,20 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
             'pagination' => false,
         ]);
 
-        return $this->render('_menu_queue_finished', [
-            'dataProvider' => $dataProvider,
-        ]);
+        return [
+            'dataProvider' => $this->serializeData($dataProvider),
+        ];
     }
 
     public function actionCorrectionInvoice() {
 
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
-
-        return $this->render('@restotech/standard/frontend/views/home/_input_invoice', [
+        return [
             'type' => 'correction',
             'version' => 'full',
-        ]);
+        ];
     }
 
     public function actionCorrectionInvoiceSubmit() {
-
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
         $post = Yii::$app->request->post();
 
@@ -270,8 +240,6 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
 
     public function actionBooking() {
 
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
-
         $query = MtableBooking::find()
                 ->joinWith([
                     'mtable',
@@ -284,18 +252,16 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
             'pagination' => false,
         ]);
 
-        return $this->render('_booking', [
-            'dataProvider' => $dataProvider,
-        ]);
+        return [
+            'dataProvider' => $this->serializeData($dataProvider),
+        ];
     }
 
     public function actionCreateBooking() {
 
-        $this->layout = '@restotech/standard/backend/views/layouts/ajax';
-
-        return $this->render('_create_booking', [
+        return [
             'model' => new MtableBooking(),
             'modelMtable' => new Mtable(),
-        ]);
+        ];
     }
 }
