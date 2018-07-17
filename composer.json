@@ -3,7 +3,15 @@
     "description": "Restotech Full, Property of synctech.id",
     "type": "yii2-extension",
     "require": {
-	"synctech/yii2-synctbase": "dev-master"
+	"synctech/yii2-synctbase": "dev-master",
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+	"kartik-v/yii2-widget-timepicker": "*",
+        "kartik-v/yii2-widget-select2": "@dev",
+	"kartik-v/yii2-grid": "@dev",
+	"kartik-v/yii2-money": "dev-master",
+	"kartik-v/yii2-mpdf": "@dev",
+        "kartik-v/yii2-field-range": "*"
     },
     "autoload": {
         "psr-4": {
