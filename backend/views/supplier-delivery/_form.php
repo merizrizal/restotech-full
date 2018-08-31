@@ -21,7 +21,7 @@ $status = Yii::$app->session->getFlash('status');
 $message1 = Yii::$app->session->getFlash('message1');
 $message2 = Yii::$app->session->getFlash('message2');
 
-if ($status !== null) : 
+if ($status !== null) :
     $notif = new NotificationDialog([
         'status' => $status,
         'message1' => $message1,
@@ -33,7 +33,7 @@ if ($status !== null) :
 
 endif; ?>
 
-<?php $form = ActiveForm::begin([    
+<?php $form = ActiveForm::begin([
     'id' => 'formSupplierDelivery',
     'options' => [
 
@@ -54,7 +54,7 @@ endif; ?>
                         . '<div class="col-lg-3">'
                             . '{error}'
                         . '</div>'
-                    . '</div>', 
+                    . '</div>',
     ]
 ]); ?>
 
@@ -63,10 +63,10 @@ endif; ?>
         <div class="col-sm-8">
             <div class="box box-danger">
                 <div class="box-body">
-                    <div class="supplier-delivery-form">                    
+                    <div class="supplier-delivery-form">
 
                         <div class="form-group">
-                            
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php
@@ -95,12 +95,12 @@ endif; ?>
 
                         <?= $form->field($model, 'kd_supplier')->dropDownList(
                                 ArrayHelper::map(
-                                    Supplier::find()->andWhere(['is_deleted' => 0])->orderBy('nama')->asArray()->all(), 
-                                    'kd_supplier', 
-                                    function($data) { 
-                                        return $data['nama'] . ' (' . $data['kd_supplier'] . ')';                                 
+                                    Supplier::find()->andWhere(['is_deleted' => 0])->orderBy('nama')->asArray()->all(),
+                                    'kd_supplier',
+                                    function($data) {
+                                        return $data['nama'] . ' (' . $data['kd_supplier'] . ')';
                                     }
-                                ), 
+                                ),
                                 [
                                     'prompt' => '',
                                     'style' => 'width: 100%'
@@ -112,7 +112,7 @@ endif; ?>
                                 'parts' => [
                                     '{inputClass}' => 'col-lg-7'
                                 ],
-                            ])->textInput(['readonly' => 'readonly']); 
+                            ])->textInput(['readonly' => 'readonly']);
                         } ?>
 
                         <?php
@@ -132,7 +132,7 @@ endif; ?>
                                     $icon = '<i class="fa fa-floppy-o"></i>&nbsp;&nbsp;&nbsp;';
                                     echo Html::submitButton($model->isNewRecord ? $icon . 'Save' : $icon . 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
                                     echo '&nbsp;&nbsp;&nbsp;';
-                                    echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']); 
+                                    echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']);
 
                                     if (!$model->isNewRecord) {
                                       echo '&nbsp;&nbsp;&nbsp;';
@@ -140,14 +140,14 @@ endif; ?>
                                     } ?>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-2"></div>
     </div><!-- /.row -->
-    
+
     <div class="row">
         <div class="col-sm-12">
             <div class="box box-danger">
@@ -155,7 +155,7 @@ endif; ?>
                     <h3 class="box-title">Purchase Order</h3>
                 </div>
                 <div class="box-body">
-                    
+
                     <div class="table-responsive">
                         <table id="table-purchase-order" class="table table-striped">
                             <thead>
@@ -165,21 +165,21 @@ endif; ?>
                                     <th>Satuan (SKU)</th>
                                     <th>Jumlah Order</th>
                                     <th>Harga Satuan</th>
-                                    <th>Jumlah Terima</th>                                    
+                                    <th>Jumlah Terima</th>
                                     <th><i class="fa fa-plus"></i></th>
-                                </tr>                            
+                                </tr>
                             </thead>
                             <tbody>
-                                
+
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-sm-12">
             <div class="box box-danger">
@@ -187,7 +187,7 @@ endif; ?>
                     <h3 class="box-title">Item Yang Diterima</h3>
                 </div>
                 <div class="box-body">
-                    
+
                     <div class="table-responsive">
                         <table id="table-supplier-delivery" class="table table-striped">
                             <thead>
@@ -201,17 +201,17 @@ endif; ?>
                                     <th>Rak</th>
                                     <th style="width: 8%">Close PO</th>
                                     <th></th>
-                                </tr>                            
+                                </tr>
                             </thead>
                             <tbody>
-                                
+
                                 <?php
                                 if (!$model->isNewRecord):
-                                    
+
                                     if (!empty($model->supplierDeliveryTrxes)):
-                                        
+
                                         foreach ($model->supplierDeliveryTrxes as $supplierDeliveryTrx): ?>
-                                
+
                                             <tr>
                                                 <td><?= $supplierDeliveryTrx->purchase_order_id ?></td>
                                                 <td><?= $supplierDeliveryTrx->item->nama_item ?></td>
@@ -223,54 +223,53 @@ endif; ?>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
-                                
+
                                         <?php
                                         endforeach;
-                                    endif;                                
+                                    endif;
                                 endif; ?>
-                                
-                            </tbody>                            
+
+                            </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <div class="box">
                 <div class="box-body">
                     <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-3"></div>
-                                <div class="col-lg-6">
-                                    <?php
-                                    $icon = '<i class="fa fa-floppy-o"></i>&nbsp;&nbsp;&nbsp;';
-                                    echo Html::submitButton($model->isNewRecord ? $icon . 'Save' : $icon . 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
-                                    echo '&nbsp;&nbsp;&nbsp;';
-                                    echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']); 
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <?php
+                                $icon = '<i class="fa fa-floppy-o"></i>&nbsp;&nbsp;&nbsp;';
+                                echo Html::submitButton($model->isNewRecord ? $icon . 'Save' : $icon . 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
+                                echo '&nbsp;&nbsp;&nbsp;';
+                                echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']);
 
-                                    if (!$model->isNewRecord) {
-                                      echo '&nbsp;&nbsp;&nbsp;';
-                                      echo Html::a('<i class="fa fa-print"></i>&nbsp;&nbsp;&nbsp;Print', ['print', 'id' => $model->id], ['class' => 'btn btn-success']);
-                                    } ?>
-                                </div>
+                                if (!$model->isNewRecord) {
+                                  echo '&nbsp;&nbsp;&nbsp;';
+                                  echo Html::a('<i class="fa fa-print"></i>&nbsp;&nbsp;&nbsp;Print', ['print', 'id' => $model->id], ['class' => 'btn btn-success']);
+                                } ?>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-2"></div>
     </div><!-- /.row -->
-    
+
     <?= Html::hiddenInput('index', 0, ['id' => 'index']) ?>
-    
+
 <?php ActiveForm::end(); ?>
-    
+
 <div id="temp-SDTrx" class="hide">
     <table>
         <tbody>
@@ -305,12 +304,12 @@ endif; ?>
                         'template' => '{input}{error}'
                     ])->dropDownList(
                         ArrayHelper::map(
-                            Storage::find()->orderBy('nama_storage')->asArray()->all(), 
-                            'id', 
-                            function($data) { 
+                            Storage::find()->orderBy('nama_storage')->asArray()->all(),
+                            'id',
+                            function($data) {
                                 return $data['nama_storage'] . ' (' . $data['id'] . ')';
                             }
-                        ), 
+                        ),
                         [
                             'prompt' => '',
                             'style' => 'width: 100%'
@@ -329,31 +328,31 @@ endif; ?>
                 </td>
                 <td>
                     <div class="btn-group btn-group-xs" role="group">
-                        <?= Html::a('<i class="fa fa-trash"></i>', null, [                    
+                        <?= Html::a('<i class="fa fa-trash"></i>', null, [
                             'id' => 'aDelete',
-                            'class' => 'btn btn-danger',                            
+                            'class' => 'btn btn-danger',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'left',
                             'title' => 'Delete',
                         ]) ?>
                     </div>
-                    
+
                     <?= $form->field($modelSupplierDeliveryTrx, '[index]purchase_order_trx_id', [
                         'template' => '{input}'
                     ])->hiddenInput() ?>
-                    
+
                     <?= $form->field($modelSupplierDeliveryTrx, '[index]item_id', [
                         'template' => '{input}'
                     ])->hiddenInput() ?>
-                    
+
                     <?= $form->field($modelSupplierDeliveryTrx, '[index]item_sku_id', [
                         'template' => '{input}'
                     ])->hiddenInput() ?>
-                    
+
                     <?= $form->field($modelSupplierDeliveryTrx, '[index]jumlah_order', [
                         'template' => '{input}'
                     ])->hiddenInput() ?>
-                    
+
                 </td>
             </tr>
         </tbody>
@@ -374,65 +373,65 @@ $this->registerCss('
       display: none;
     }
 ');
- 
+
 $this->registerJsFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/icheck.min.js', ['depends' => 'yii\web\YiiAsset']);
 
 $jscript = '
     var disableKdSupplier = function() {
-    
-        if ($("#table-supplier-delivery").children("tbody").find("tr").length > 0) {       
-        
+
+        if ($("#table-supplier-delivery").children("tbody").find("tr").length > 0) {
+
             $("#supplierdelivery-kd_supplier").on("select2:opening",function(e) {
                 return false;
             });
-            
+
             $("#supplierdelivery-kd_supplier").on("select2:unselecting",function(e) {
                 return false;
             });
-        } else {            
-            
+        } else {
+
             $("#supplierdelivery-kd_supplier").off("select2:opening");
             $("#supplierdelivery-kd_supplier").off("select2:unselecting");
         }
     };
-    
+
     $("#supplierdelivery-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-    
+
     $("#supplierdelivery-kd_supplier").select2({
         theme: "krajee",
         placeholder: "Pilih",
         allowClear: true
     });
-    
+
     $("#supplierdelivery-kd_supplier").on("select2:select", function(e) {
-        
+
         $.ajax({
             cache: false,
             url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'purchase-order/get-po']) . '?id=" + $(this).select2("data")[0].id,
             success: function(response) {
-                
+
                 $("table#table-purchase-order tbody").html(response);
             }
         });
     });
-            
+
     $("#supplierdelivery-jumlah_harga-disp").off("keypress");
     $("#supplierdelivery-jumlah_harga-disp").off("keyup");
-';   
+';
 
 if (!$model->isNewRecord) {
-    
+
     $jscript .= '
-        
+
         $.ajax({
             cache: false,
             url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'purchase-order/get-po']) . '?id=" + $("#supplierdelivery-kd_supplier").select2("data")[0].id,
             success: function(response) {
-                
+
                 $("table#table-purchase-order tbody").html(response);
             }
         });
-        
+
         disableKdSupplier();
     ';
 }
