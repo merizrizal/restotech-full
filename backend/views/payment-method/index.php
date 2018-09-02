@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                                     . '{view}{update}{delete}'
                             . '</div>',
                 'buttons' => [
-                    'view' =>  function($url, $model, $key) {
+                    'view' => function($url, $model, $key) {
                         return Html::a('<i class="fa fa-search-plus"></i>', $url, [
                             'id' => 'view',
                             'class' => 'btn btn-primary',
@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                             'title' => 'View',
                         ]);
                     },
-                    'update' =>  function($url, $model, $key) {
+                    'update' => function($url, $model, $key) {
                         return Html::a('<i class="fa fa-pencil"></i>', $url, [
                             'id' => 'update',
                             'class' => 'btn btn-success',
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                             'title' => 'Edit',
                         ]);
                     },
-                    'delete' =>  function($url, $model, $key) {
+                    'delete' => function($url, $model, $key) {
                         return Html::a('<i class="fa fa-trash"></i>', $url, [
                             'id' => 'delete',
                             'class' => 'btn btn-danger',                            

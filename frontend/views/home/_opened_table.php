@@ -149,7 +149,7 @@ $this->title = 'Meja Terisi'; ?>
                                 'class' => 'yii\grid\ActionColumn',
                                 'template' => '{view}',
                                 'buttons' => [
-                                    'view' =>  function($url, $model, $key) {
+                                    'view' => function($url, $model, $key) {
 
                                         $sessId = null;
                                         $tableId = $model['id'];

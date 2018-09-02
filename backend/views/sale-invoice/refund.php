@@ -95,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                                     . '{view}'
                             . '</div>',
                 'buttons' => [
-                    'view' =>  function($url, $model, $key) {
+                    'view' => function($url, $model, $key) {
                         return Html::a('<i class="fa fa-search"></i>', $url, [
                             'id' => 'view',
                             'class' => 'btn btn-primary',

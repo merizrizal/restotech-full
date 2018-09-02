@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                                     . '{koreksi}'
                             . '</div>',
                 'buttons' => [
-                    'koreksi' =>  function($url, $model, $key) {
+                    'koreksi' => function($url, $model, $key) {
                         return Html::a('<i class="fa fa-pencil"></i>', ['stock-koreksi/create', 'id' => $model->id], [
                             'id' => 'koreksi',
                             'class' => 'btn btn-primary',

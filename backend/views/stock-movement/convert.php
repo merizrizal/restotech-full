@@ -101,7 +101,7 @@ $this->params['titleH1'] = '&nbsp;&nbsp;&nbsp;' . Html::a('<i class="fa fa-tag">
                                     . '{update}'
                             . '</div>',
                 'buttons' => [
-                    'update' =>  function($url, $model, $key) {
+                    'update' => function($url, $model, $key) {
                         return Html::a('<i class="fa fa-pencil"></i>', $url, [
                             'id' => 'update',
                             'class' => 'btn btn-success',

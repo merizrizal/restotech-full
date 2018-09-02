@@ -36,7 +36,7 @@ $this->title = 'Menu Yang Sudah Siap'; ?>
                                 'class' => 'yii\grid\ActionColumn',
                                 'template' => '{check}',
                                 'buttons' => [
-                                    'check' =>  function($url, $model, $key) {                                                                                
+                                    'check' => function($url, $model, $key) {                                                                                
                                         
                                         return '<div class="btn-group btn-group-xs" role="group" style="width: 75px">' .
                                                     Html::a('<i class="fa fa-check"></i>', Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['full'] . 'action/queue-send', 'id' => $model->id]), [
