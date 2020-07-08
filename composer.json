@@ -17,15 +17,5 @@
         "psr-4": {
             "restotech\\full\\": ""
         }
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        },
-	{
-            "type": "git",
-            "url": "https://username@bitbucket.org/synctechid/synctbase.git"
-        }
-    ]
+    }
 }

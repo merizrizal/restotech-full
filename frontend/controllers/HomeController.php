@@ -121,7 +121,7 @@ class HomeController extends \restotech\standard\frontend\controllers\HomeContro
 
         $this->layout = '@restotech/standard/backend/views/layouts/ajax';
 
-        $modelMtableSession = null;
+        $modelMtableSession = [];
 
         if (!empty($sessId)) {
 
