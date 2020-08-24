@@ -1,1 +1,3 @@
-Synctech.ID
+developed by Synctech.ID
+
+Core of Restotech Full version
