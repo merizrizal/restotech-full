@@ -15,7 +15,7 @@ use restotech\standard\backend\models\Storage;
 
 yii\widgets\MaskedInputAsset::register($this);
 kartik\select2\Select2Asset::register($this);
-kartik\select2\ThemeKrajeeAsset::register($this);
+kartik\select2\ThemeKrajeeBs3Asset::register($this);
 
 $status = Yii::$app->session->getFlash('status');
 $message1 = Yii::$app->session->getFlash('message1');

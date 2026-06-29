@@ -14,13 +14,13 @@ use restotech\standard\backend\models\TransactionAccount;
 
 yii\widgets\MaskedInputAsset::register($this);
 kartik\select2\Select2Asset::register($this);
-kartik\select2\ThemeKrajeeAsset::register($this);
+kartik\select2\ThemeKrajeeBs3Asset::register($this);
 
 $status = Yii::$app->session->getFlash('status');
 $message1 = Yii::$app->session->getFlash('message1');
 $message2 = Yii::$app->session->getFlash('message2');
 
-if ($status !== null) : 
+if ($status !== null) :
     $notif = new NotificationDialog([
         'status' => $status,
         'message1' => $message1,
@@ -41,7 +41,7 @@ endif; ?>
 
                     <?php $form = ActiveForm::begin([
                             'options' => [
-                                
+
                             ],
                             'fieldConfig' => [
                                 'parts' => [
@@ -59,10 +59,10 @@ endif; ?>
                                                 . '<div class="col-lg-3">'
                                                     . '{error}'
                                                 . '</div>'
-                                            . '</div>', 
+                                            . '</div>',
                             ]
                     ]); ?>
-                    
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-6">
@@ -75,12 +75,12 @@ endif; ?>
 
                     <?= $form->field($model, 'account_id')->dropDownList(
                             ArrayHelper::map(
-                                TransactionAccount::find()->orderBy('nama_account')->andWhere(['account_type' => $type])->asArray()->all(), 
-                                'id', 
-                                function($data) { 
-                                    return $data['nama_account'] . ' (' . $data['id'] . ')';                                 
+                                TransactionAccount::find()->orderBy('nama_account')->andWhere(['account_type' => $type])->asArray()->all(),
+                                'id',
+                                function($data) {
+                                    return $data['nama_account'] . ' (' . $data['id'] . ')';
                                 }
-                            ), 
+                            ),
                             [
                                 'prompt' => '',
                                 'style' => 'width: 100%'
@@ -129,7 +129,7 @@ endif; ?>
 <?php
 $jscript = '
     $("#transactioncash-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-    
+
     $("#transactioncash-account_id").select2({
         theme: "krajee",
         placeholder: "Pilih",

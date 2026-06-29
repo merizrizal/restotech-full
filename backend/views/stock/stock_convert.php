@@ -13,13 +13,13 @@ use restotech\standard\backend\components\NotificationDialog;
 
 yii\widgets\MaskedInputAsset::register($this);
 kartik\select2\Select2Asset::register($this);
-kartik\select2\ThemeKrajeeAsset::register($this);
+kartik\select2\ThemeKrajeeBs3Asset::register($this);
 
 $status = Yii::$app->session->getFlash('status');
 $message1 = Yii::$app->session->getFlash('message1');
 $message2 = Yii::$app->session->getFlash('message2');
 
-if ($status !== null) : 
+if ($status !== null) :
     $notif = new NotificationDialog([
         'status' => $status,
         'message1' => $message1,
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
 <?php $form = ActiveForm::begin([
     'id' => 'formStockConvert',
     'options' => [
-        
+
     ],
     'fieldConfig' => [
         'parts' => [
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
                         . '<div class="col-lg-3">'
                             . '{error}'
                         . '</div>'
-                    . '</div>', 
+                    . '</div>',
     ]
 ]); ?>
 
@@ -69,35 +69,35 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
                 </div>
                 <div class="box-body">
                     <div class="stock-form">
-                        
+
                         <?= $form->field($modelStock, 'item_id')->dropDownList(
-                                ArrayHelper::map(                                        
-                                    Stock::find()->joinWith('item')->where(['item.not_active' => 0])->asArray()->all(), 
-                                    function($data) { 
-                                        return $data['item']['id'];                                 
-                                    }, 
-                                    function($data) { 
-                                        return $data['item']['nama_item'] . ' (' . $data['item']['id'] . ')';                                 
+                                ArrayHelper::map(
+                                    Stock::find()->joinWith('item')->where(['item.not_active' => 0])->asArray()->all(),
+                                    function($data) {
+                                        return $data['item']['id'];
+                                    },
+                                    function($data) {
+                                        return $data['item']['nama_item'] . ' (' . $data['item']['id'] . ')';
                                     }
-                                ), 
+                                ),
                                 [
                                     'prompt' => '',
                                     'style' => 'width: 100%'
                                 ]
                             ) ?>
-                        
+
                         <?= $form->field($modelStock, 'item_sku_id')->textInput(['maxlength' => 16, 'style' => 'width: 100%']) ?>
-                        
+
                         <?= $form->field($modelStock, 'storage_id')->textInput(['maxlength' => 12, 'style' => 'width: 100%']) ?>
-                        
+
                         <?= $form->field($modelStock, 'storage_rack_id')->textInput(['style' => 'width: 100%']) ?>
-                        
+
                         <?= $form->field($modelStock, 'jumlah_stok', [
                             'parts' => [
                                 '{inputClass}' => 'col-lg-7'
                             ],
                         ])->textInput() ?>
-                        
+
                     </div>
                 </div>
             </div>
@@ -112,32 +112,32 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
                     <h3 class="box-title">Konversi Ke</h3>
                 </div>
                 <div class="box-body">
-                    <div class="stock-movement-form">                        
-                        
+                    <div class="stock-movement-form">
+
                         <?= $form->field($model, 'tanggal', [
                                 'parts' => [
                                     '{inputClass}' => 'col-lg-8'
                                 ],
                             ])->widget(DatePicker::className(), [
                                 'pluginOptions' => Yii::$app->params['datepickerOptions'],
-                            ]) ?>                                                                        
+                            ]) ?>
 
                         <?= $form->field($model, 'item_sku_id')->textInput(['maxlength' => 16, 'style' => 'width: 100%']) ?>
-                                                
-                        <?= $form->field($model, 'storage_to')->dropDownList(                                
+
+                        <?= $form->field($model, 'storage_to')->dropDownList(
                                 ArrayHelper::map(
-                                    Storage::find()->orderBy('nama_storage')->asArray()->all(), 
-                                    'id', 
-                                    function($data) { 
+                                    Storage::find()->orderBy('nama_storage')->asArray()->all(),
+                                    'id',
+                                    function($data) {
                                         return $data['nama_storage'] . ' (' . $data['id'] . ')';
                                     }
-                                ), 
+                                ),
                                 [
                                     'prompt' => '',
                                     'style' => 'width: 100%'
                                 ]
                             ) ?>
-                        
+
                         <?= $form->field($model, 'storage_rack_to')->textInput(['maxlength' => 20, 'style' => 'width: 100%']) ?>
 
                         <?= $form->field($model, 'jumlah', [
@@ -145,7 +145,7 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
                                     '{inputClass}' => 'col-lg-7'
                                 ],
                             ])->textInput(['readonly' => 'readonly']) ?>
-                        
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3"></div>
@@ -156,9 +156,9 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <?= $form->field($model, 'reference')->textInput(['maxlength' => 20]) ?>
-                        
+
                         <?= $form->field($model, 'keterangan')->textarea(['rows' => 3]) ?>
 
 
@@ -173,7 +173,7 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
                                     echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['stock-movement/convert'], ['class' => 'btn btn-default']); ?>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
 
                     </div>
                 </div>
@@ -183,7 +183,7 @@ $this->params['breadcrumbs'][] = 'Input Stok'; ?>
     </div><!-- /.row -->
 
 <?php ActiveForm::end(); ?>
-    
+
 <?php
 $notifConvert = new NotificationDialog([
     'status' => 'danger',
@@ -193,12 +193,12 @@ $notifConvert = new NotificationDialog([
 ]);
 
 echo $notifConvert->renderDialog(); ?>
-    
+
 <?php
 
 $this->registerCssFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/all.css', ['depends' => 'yii\web\YiiAsset']);
- 
-$this->registerJsFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/icheck.min.js', ['depends' => 'yii\web\YiiAsset']);    
+
+$this->registerJsFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/icheck.min.js', ['depends' => 'yii\web\YiiAsset']);
 
 $jscript = '
     $("#stock-item_id").select2({
@@ -206,7 +206,7 @@ $jscript = '
         placeholder: "Pilih",
         allowClear: true
     });
-    
+
     var itemSkuStock = function(remoteData) {
         $("#stock-item_sku_id").val(null);
         $("#stock-item_sku_id").select2({
@@ -218,10 +218,10 @@ $jscript = '
     };
 
     itemSkuStock([]);
-    
+
     $("#stock-item_id").on("select2:select", function(e) {
         $("input#stock-item_sku_id").val(null).trigger("change");
-        
+
         $.ajax({
             dataType: "json",
             cache: false,
@@ -230,13 +230,13 @@ $jscript = '
                 itemSkuStock(response);
             }
         });
-        
+
         $("input#stock-storage_id").val(null).trigger("change");
         storageStock([]);
-        
+
         $("#stock-storage_rack_id").val(null).trigger("change");
         storageRackStock([]);
-        
+
          $("#stockmovement-item_sku_id").val(null).trigger("change");
         itemSku([]);
     });
@@ -244,17 +244,17 @@ $jscript = '
     $("#stock-item_id").on("select2:unselect", function(e) {
         $("#stock-item_sku_id").val(null).trigger("change");
         itemSkuStock([]);
-        
+
         $("input#stock-storage_id").val(null).trigger("change");
         storageStock([]);
-        
+
         $("#stock-storage_rack_id").val(null).trigger("change");
         storageRackStock([]);
-        
+
         $("#stockmovement-item_sku_id").val(null).trigger("change");
         itemSku([]);
     });
-    
+
     var storageStock = function(remoteData) {
         $("#stock-storage_id").val(null);
         $("#stock-storage_id").select2({
@@ -266,10 +266,10 @@ $jscript = '
     };
 
     storageStock([]);
-    
+
     $("#stock-item_sku_id").on("select2:select", function(e) {
         $("input#stock-storage_id").val(null).trigger("change");
-        
+
         $.ajax({
             dataType: "json",
             cache: false,
@@ -278,12 +278,12 @@ $jscript = '
                 storageStock(response);
             }
         });
-        
+
         $("#stock-storage_rack_id").val(null).trigger("change");
         storageRackStock([]);
-        
+
         $("input#stockmovement-item_sku_id").val(null).trigger("change");
-        
+
         $.ajax({
             dataType: "json",
             cache: false,
@@ -297,14 +297,14 @@ $jscript = '
     $("#stock-item_sku_id").on("select2:unselect", function(e) {
         $("#stock-storage_id").val(null).trigger("change");
         storageStock([]);
-        
+
         $("#stock-storage_rack_id").val(null).trigger("change");
         storageRackStock([]);
-        
+
         $("#stockmovement-item_sku_id").val(null).trigger("change");
         itemSku([]);
     });
-    
+
     var storageRackStock = function(remoteData) {
         $("#stock-storage_rack_id").val(null);
         $("#stock-storage_rack_id").select2({
@@ -316,10 +316,10 @@ $jscript = '
     };
 
     storageRackStock([]);
-    
+
     $("#stock-storage_id").on("select2:select", function(e) {
         $("input#stock-storage_rack_id").val(null).trigger("change");
-        
+
         $.ajax({
             dataType: "json",
             cache: false,
@@ -334,11 +334,11 @@ $jscript = '
         $("#stock-storage_rack_id").val(null).trigger("change");
         storageRackStock([]);
     });
-    
 
-    
-    $("#stockmovement-tanggal").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});        
-    
+
+
+    $("#stockmovement-tanggal").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
+
     var itemSku = function(remoteData) {
         $("#stockmovement-item_sku_id").val(null);
         $("#stockmovement-item_sku_id").select2({
@@ -350,7 +350,7 @@ $jscript = '
     };
 
     itemSku([]);
-    
+
     $("#stockmovement-storage_to").select2({
         theme: "krajee",
         placeholder: "Pilih",
@@ -386,28 +386,28 @@ $jscript = '
         $("#stockmovement-storage_rack_to").val(null).trigger("change");
         storageRackTo([]);
     });
-    
+
     $("a#btnConvert").on("click", function(e) {
-    
+
         if ($("#stock-item_sku_id").val() == "" || $("#stockmovement-item_sku_id").val() == "" || $("#stock-jumlah_stok").val() == "" || $(".field-stock-jumlah_stok").hasClass("has-error")) {
-            
+
             $("#notifConvert").modal();
         } else {
-        
+
             $.ajax({
                 dataType: "json",
                 cache: false,
                 url: "' . Yii::$app->urlManager->createUrl([Yii::$app->params['posModule']['standard'] . 'item-sku/get-jumlah-convert']) . '?iid=" + $("#stock-item_id").select2("data")[0].id  + "&isidfrom=" + $("#stock-item_sku_id").val() + "&isidto=" + $("#stockmovement-item_sku_id").val(),
                 success: function(response) {
-                    
+
                     $("#stockmovement-jumlah").val(parseFloat($("#stock-jumlah_stok").val()) * parseFloat(response.jumlah));
                 }
             });
         }
-        
+
         return false;
     });
-    
+
     $("#formStockConvert").yiiActiveForm("add", {
         id: "stockmovement-storage_to",
         name: "StockMovement[storage_to]",
@@ -417,7 +417,7 @@ $jscript = '
             yii.validation.required(value, messages, {"message":"To Storage tidak boleh kosong."});
         }
     });
-    
+
     $("#formStockConvert").yiiActiveForm("add", {
         id: "stockmovement-jumlah",
         name: "StockMovement[jumlah]",
