@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2db0cedcb496c0a405388f3c69b29bb4",
+    "content-hash": "e4b94fb8d5646c408dae19b1ee9e7391",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -1509,6 +1509,35 @@
             "time": "2026-06-11T10:37:24+00:00"
         },
         {
+            "name": "synctech/restotech-standard",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/merizrizal/restotech-standard.git",
+                "reference": "4cb5f49b90ac8c35e96040af6b4e324b800e724c"
+            },
+            "require": {
+                "kartik-v/yii2-field-range": "*",
+                "kartik-v/yii2-grid": "@dev",
+                "kartik-v/yii2-money": "dev-master",
+                "kartik-v/yii2-mpdf": "@dev",
+                "kartik-v/yii2-widget-datepicker": "@dev",
+                "kartik-v/yii2-widget-fileinput": "@dev",
+                "kartik-v/yii2-widget-select2": "@dev",
+                "kartik-v/yii2-widget-timepicker": "*",
+                "synctech/yii2-synctbase": "dev-master"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "restotech\\standard\\": ""
+                }
+            },
+            "description": "Restotech, Property of synctech.id",
+            "time": "2026-06-29T10:05:13+00:00"
+        },
+        {
             "name": "synctech/yii2-synctbase",
             "version": "dev-master",
             "source": {
@@ -1738,6 +1767,7 @@
         "kartik-v/yii2-widget-datepicker": 20,
         "kartik-v/yii2-widget-fileinput": 20,
         "kartik-v/yii2-widget-select2": 20,
+        "synctech/restotech-standard": 20,
         "synctech/yii2-synctbase": 20
     },
     "prefer-stable": false,
