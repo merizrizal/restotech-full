@@ -179,7 +179,7 @@ $jscript = '
     $("#stockmovement-tanggal").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
 
     $("#stockmovement-item_id").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });
@@ -187,7 +187,7 @@ $jscript = '
     var itemSku = function(remoteData) {
         $("#stockmovement-item_sku_id").val(null);
         $("#stockmovement-item_sku_id").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true,
             data: remoteData,
@@ -219,7 +219,7 @@ if ($flow == 'Outflow' || $flow == 'Transfer') {
 
     $jscript .= '
         $("#stockmovement-storage_from").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true
         });
@@ -227,7 +227,7 @@ if ($flow == 'Outflow' || $flow == 'Transfer') {
         var storageRackFrom = function(remoteData) {
             $("#stockmovement-storage_rack_from").val(null);
             $("#stockmovement-storage_rack_from").select2({
-                theme: "krajee",
+                theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
                 placeholder: "Pilih",
                 allowClear: true,
                 data: remoteData,
@@ -260,7 +260,7 @@ if ($flow == 'Inflow' || $flow == 'Transfer') {
 
     $jscript .= '
         $("#stockmovement-storage_to").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true
         });
@@ -268,7 +268,7 @@ if ($flow == 'Inflow' || $flow == 'Transfer') {
         var storageRackTo = function(remoteData) {
             $("#stockmovement-storage_rack_to").val(null);
             $("#stockmovement-storage_rack_to").select2({
-                theme: "krajee",
+                theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
                 placeholder: "Pilih",
                 allowClear: true,
                 data: remoteData,

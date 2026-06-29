@@ -20,7 +20,7 @@ $status = Yii::$app->session->getFlash('status');
 $message1 = Yii::$app->session->getFlash('message1');
 $message2 = Yii::$app->session->getFlash('message2');
 
-if ($status !== null) : 
+if ($status !== null) :
     $notif = new NotificationDialog([
         'status' => $status,
         'message1' => $message1,
@@ -30,7 +30,7 @@ if ($status !== null) :
     $notif->theScript();
     echo $notif->renderDialog();
 
-endif; 
+endif;
 
 $form = ActiveForm::begin([
     'options' => [
@@ -52,7 +52,7 @@ $form = ActiveForm::begin([
                         . '<div class="col-lg-3">'
                             . '{error}'
                         . '</div>'
-                    . '</div>', 
+                    . '</div>',
     ]
 ]);
 
@@ -63,11 +63,11 @@ $form = ActiveForm::begin([
             'item_id' => [
                 'type' => 'dropdown',
                 'data' => ArrayHelper::map(
-                        
-                        Item::find()->orderBy('nama_item')->asArray()->all(), 
-                        'id', 
-                        function($data) { 
-                            return $data['nama_item'] . ' (' . $data['id'] . ')';                                 
+
+                        Item::find()->orderBy('nama_item')->asArray()->all(),
+                        'id',
+                        function($data) {
+                            return $data['nama_item'] . ' (' . $data['id'] . ')';
                         }
                 ),
                 'affect' => [
@@ -98,7 +98,7 @@ $form = ActiveForm::begin([
         <div class="col-sm-8">
             <div class="box box-danger">
                 <div class="box-body">
-                    <div class="purchase-order-form">                    
+                    <div class="purchase-order-form">
 
                         <div class="form-group">
                             <div class="row">
@@ -129,12 +129,12 @@ $form = ActiveForm::begin([
 
                         <?= $form->field($model, 'kd_supplier')->dropDownList(
                                 ArrayHelper::map(
-                                    Supplier::find()->andWhere(['is_deleted' => 0])->orderBy('nama')->asArray()->all(), 
-                                    'kd_supplier', 
-                                    function($data) { 
-                                        return $data['nama'] . ' (' . $data['kd_supplier'] . ')';                                 
+                                    Supplier::find()->andWhere(['is_deleted' => 0])->orderBy('nama')->asArray()->all(),
+                                    'kd_supplier',
+                                    function($data) {
+                                        return $data['nama'] . ' (' . $data['kd_supplier'] . ')';
                                     }
-                                ), 
+                                ),
                                 [
                                     'prompt' => '',
                                     'style' => 'width: 100%'
@@ -146,7 +146,7 @@ $form = ActiveForm::begin([
                                 'parts' => [
                                     '{inputClass}' => 'col-lg-7'
                                 ],
-                            ])->textInput(['readonly' => 'readonly']);                            
+                            ])->textInput(['readonly' => 'readonly']);
                         } ?>
 
                         <?php
@@ -155,7 +155,7 @@ $form = ActiveForm::begin([
                                 'parts' => [
                                     '{inputClass}' => 'col-lg-7'
                                 ],
-                            ])->widget(MaskMoney::className(), ['readonly' => 'readonly']);                            
+                            ])->widget(MaskMoney::className(), ['readonly' => 'readonly']);
                         } ?>
 
                         <div class="form-group">
@@ -166,7 +166,7 @@ $form = ActiveForm::begin([
                                     $icon = '<i class="fa fa-floppy-o"></i>&nbsp;&nbsp;&nbsp;';
                                     echo Html::submitButton($model->isNewRecord ? $icon . 'Save' : $icon . 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
                                     echo '&nbsp;&nbsp;&nbsp;';
-                                    echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']); 
+                                    echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']);
 
                                     if (!$model->isNewRecord) {
                                       echo '&nbsp;&nbsp;&nbsp;';
@@ -184,7 +184,7 @@ $form = ActiveForm::begin([
     </div><!-- /.row -->
 
     <?= $dynamicFormPOTrx->component(); ?>
-    
+
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
@@ -194,7 +194,7 @@ $form = ActiveForm::begin([
                     $icon = '<i class="fa fa-floppy-o"></i>&nbsp;&nbsp;&nbsp;';
                     echo Html::submitButton($model->isNewRecord ? $icon . 'Save' : $icon . 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
                     echo '&nbsp;&nbsp;&nbsp;';
-                    echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']); 
+                    echo Html::a('<i class="fa fa-rotate-left"></i>&nbsp;&nbsp;&nbsp;Cancel', ['index'], ['class' => 'btn btn-default']);
 
                     if (!$model->isNewRecord) {
                       echo '&nbsp;&nbsp;&nbsp;';
@@ -205,22 +205,22 @@ $form = ActiveForm::begin([
         </div>
     </div>
 
-<?php 
+<?php
 ActiveForm::end(); ?>
 
 <?php
 
 $jscript = '
     $("#purchaseorder-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-    
+
     $("#purchaseorder-kd_supplier").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });
-            
+
     $("#purchaseorder-jumlah_harga-disp").off("keypress");
     $("#purchaseorder-jumlah_harga-disp").off("keyup");
-';   
+';
 
 $this->registerJs($jscript); ?>

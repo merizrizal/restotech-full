@@ -131,7 +131,7 @@ $jscript = '
     $("#transactioncash-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
 
     $("#transactioncash-account_id").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });

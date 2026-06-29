@@ -238,13 +238,13 @@ $jscript = '
     $("#supplierdeliveryinvoice-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
 
     $("#supplierdeliveryinvoice-supplier_delivery_id").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });
 
     $("#supplierdeliveryinvoice-payment_method").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });

@@ -84,7 +84,7 @@ $jscript = '
     $("#mtablebooking-time").inputmask("hh:mm", {"placeholder": "hh:mm"});
 
     $("#mtable-mtable_category_id").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });
@@ -92,7 +92,7 @@ $jscript = '
     var mtable = function(remoteData) {
         $("#mtablebooking-mtable_id").val(null);
         $("#mtablebooking-mtable_id").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true,
             data: remoteData,

@@ -202,7 +202,7 @@ $this->registerJsFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/i
 
 $jscript = '
     $("#stock-item_id").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });
@@ -210,7 +210,7 @@ $jscript = '
     var itemSkuStock = function(remoteData) {
         $("#stock-item_sku_id").val(null);
         $("#stock-item_sku_id").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true,
             data: remoteData,
@@ -258,7 +258,7 @@ $jscript = '
     var storageStock = function(remoteData) {
         $("#stock-storage_id").val(null);
         $("#stock-storage_id").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true,
             data: remoteData,
@@ -308,7 +308,7 @@ $jscript = '
     var storageRackStock = function(remoteData) {
         $("#stock-storage_rack_id").val(null);
         $("#stock-storage_rack_id").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true,
             data: remoteData,
@@ -342,7 +342,7 @@ $jscript = '
     var itemSku = function(remoteData) {
         $("#stockmovement-item_sku_id").val(null);
         $("#stockmovement-item_sku_id").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true,
             data: remoteData,
@@ -352,7 +352,7 @@ $jscript = '
     itemSku([]);
 
     $("#stockmovement-storage_to").select2({
-        theme: "krajee",
+        theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",
         allowClear: true
     });
@@ -360,7 +360,7 @@ $jscript = '
     var storageRackTo = function(remoteData) {
         $("#stockmovement-storage_rack_to").val(null);
         $("#stockmovement-storage_rack_to").select2({
-            theme: "krajee",
+            theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
             placeholder: "Pilih",
             allowClear: true,
             data: remoteData,
