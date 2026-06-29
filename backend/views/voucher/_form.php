@@ -16,7 +16,7 @@ $status = Yii::$app->session->getFlash('status');
 $message1 = Yii::$app->session->getFlash('message1');
 $message2 = Yii::$app->session->getFlash('message2');
 
-if ($status !== null) : 
+if ($status !== null) :
     $notif = new NotificationDialog([
         'status' => $status,
         'message1' => $message1,
@@ -37,7 +37,7 @@ endif; ?>
 
                     <?php $form = ActiveForm::begin([
                             'options' => [
-                                
+
                             ],
                             'fieldConfig' => [
                                 'parts' => [
@@ -55,10 +55,10 @@ endif; ?>
                                                 . '<div class="col-lg-3">'
                                                     . '{error}'
                                                 . '</div>'
-                                            . '</div>', 
+                                            . '</div>',
                             ]
                     ]); ?>
-                    
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-6">
@@ -80,12 +80,12 @@ endif; ?>
 
                     <?= $form->field($model, 'voucher_type')->radioList(
                         [
-                            'Percent' => 'Percent', 
+                            'Percent' => 'Percent',
                             'Value' => 'Value'
-                        ], 
+                        ],
                         [
                             'separator' => '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'
-                        ]) ?>                   
+                        ]) ?>
 
                     <?= $form->field($model, 'jumlah_voucher', [
                             'parts' => [
@@ -112,7 +112,7 @@ endif; ?>
                         ])->widget(DatePicker::className(), [
                             'pluginOptions' => Yii::$app->params['datepickerOptions'],
                         ]) ?>
-                    
+
                     <?= $form->field($model, 'not_active')->checkbox(['value' => true], false) ?>
 
                     <?= $form->field($model, 'keterangan')->textarea(['rows' => 2]) ?>
@@ -139,24 +139,22 @@ endif; ?>
     <div class="col-sm-2"></div>
 </div><!-- /.row -->
 
-<?php 
+<?php
 $this->registerCssFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/all.css', ['depends' => 'yii\web\YiiAsset']);
-   
+
 $this->registerJsFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/icheck.min.js', ['depends' => 'yii\web\YiiAsset']);
 
 $jscript = '
-    $("#voucher-start_date, #voucher-end_date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});   
-    
     $("input[type=radio]").on("ifChecked", function() {
-    
-        var val = parseFloat($("#voucher-jumlah_voucher").val());    
-        
+
+        var val = parseFloat($("#voucher-jumlah_voucher").val());
+
         if ($(this).val() == "Percent") {
-            $("#voucher-jumlah_voucher-disp").maskMoney({"prefix":"","suffix":"","affixesStay":true,"thousands":".","decimal":",","precision":0,"allowZero":false,"allowNegative":false}, val);                
+            $("#voucher-jumlah_voucher-disp").maskMoney({"prefix":"","suffix":"","affixesStay":true,"thousands":".","decimal":",","precision":0,"allowZero":false,"allowNegative":false}, val);
         } else if ($(this).val() == "Value") {
             $("#voucher-jumlah_voucher-disp").maskMoney({"prefix":"Rp ","suffix":"","affixesStay":true,"thousands":".","decimal":",","precision":0,"allowZero":false,"allowNegative":false}, val);
         }
-        
+
         $("#voucher-jumlah_voucher-disp").maskMoney("mask");
     });
 ';

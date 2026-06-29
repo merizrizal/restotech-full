@@ -176,8 +176,6 @@ $this->registerCssFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/
 $this->registerJsFile($this->params['assetCommon']->baseUrl . '/plugins/iCheck/icheck.min.js', ['depends' => 'yii\web\YiiAsset']);
 
 $jscript = '
-    $("#stockmovement-tanggal").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-
     $("#stockmovement-item_id").select2({
         theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",

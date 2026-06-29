@@ -335,10 +335,6 @@ $jscript = '
         storageRackStock([]);
     });
 
-
-
-    $("#stockmovement-tanggal").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-
     var itemSku = function(remoteData) {
         $("#stockmovement-item_sku_id").val(null);
         $("#stockmovement-item_sku_id").select2({

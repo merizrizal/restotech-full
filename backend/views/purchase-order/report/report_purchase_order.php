@@ -17,10 +17,10 @@ $this->params['breadcrumbs'][] = $this->title; ?>
         <div class="col-sm-8">
             <div class="box box-danger">
                 <div class="box-body">
-                    <div class="sale-invoice-form">    
-                        
+                    <div class="sale-invoice-form">
+
                         <?= Html::beginForm() ?>
-                        
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="col-lg-7">
-                                            <?= Html::radioList('reportType', 'detail', 
+                                            <?= Html::radioList('reportType', 'detail',
                                                 [
                                                     'detail' => 'Detail',
                                                 ],
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                                                     'separator' => '<br>'
                                                 ]) ?>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
 
@@ -52,16 +52,16 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                                                     'options' => ['id' => 'tanggalFrom'],
                                                     'pluginOptions' => Yii::$app->params['datepickerOptions'],
                                                 ]); ?>
-                                            
+
                                             &nbsp; &nbsp; s/d &nbsp; &nbsp;
-                                            
+
                                             <?= DatePicker::widget([
                                                     'name' => 'tanggalTo',
                                                     'options' => ['id' => 'tanggalTo'],
                                                     'pluginOptions' => Yii::$app->params['datepickerOptions'],
                                                 ]); ?>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
 
@@ -71,14 +71,14 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                                     <div class="col-lg-6">
                                         <?php
                                         $icon = '<i class="fa fa-print"></i>&nbsp;&nbsp;&nbsp;';
-                                        echo Html::submitButton($icon . 'PDF', ['class' => 'btn btn-success', 'name' => 'print', 'value' => 'pdf']); 
+                                        echo Html::submitButton($icon . 'PDF', ['class' => 'btn btn-success', 'name' => 'print', 'value' => 'pdf']);
                                         echo '&nbsp;&nbsp;&nbsp;&nbsp;';
                                         echo Html::submitButton($icon . 'Excel', ['class' => 'btn btn-primary', 'name' => 'print', 'value' => 'excel']); ?>
 
                                     </div>
                                 </div>
                             </div>
-                        
+
                         <?= Html::endForm() ?>
 
                     </div>
@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
     </div><!-- /.row -->
 </div>
 
-<?php 
+<?php
 
 $this->params['regJsFile'][] = function() {
     $this->registerJsFile(Yii::getAlias('@common-web') . '/js/plugins/iCheck/icheck.min.js');
@@ -98,8 +98,4 @@ $this->params['regJsFile'][] = function() {
     $this->registerJsFile(Yii::getAlias('@common-web') . '/js/plugins/input-mask/jquery.inputmask.extensions.js');
 };
 
-$jscript = '
-    $("#tanggalFrom, #tanggalTo").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-';
-
-$this->registerJs($jscript . Yii::$app->params['checkbox-radio-script']()); ?>
+$this->registerJs(Yii::$app->params['checkbox-radio-script']()); ?>

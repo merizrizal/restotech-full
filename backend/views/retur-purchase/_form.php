@@ -359,8 +359,6 @@ $jscript = '
         }
     };
 
-    $("#returpurchase-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-
     $("#returpurchase-kd_supplier").select2({
         theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",

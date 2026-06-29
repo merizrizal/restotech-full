@@ -235,8 +235,6 @@ endif; ?>
 
 <?php
 $jscript = '
-    $("#supplierdeliveryinvoice-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-
     $("#supplierdeliveryinvoice-supplier_delivery_id").select2({
         theme: "' . kartik\select2\Select2::THEME_KRAJEE_BS3 . '",
         placeholder: "Pilih",

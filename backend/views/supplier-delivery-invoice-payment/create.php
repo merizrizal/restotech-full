@@ -18,7 +18,7 @@ $status = Yii::$app->session->getFlash('status');
 $message1 = Yii::$app->session->getFlash('message1');
 $message2 = Yii::$app->session->getFlash('message2');
 
-if ($status !== null) : 
+if ($status !== null) :
     $notif = new NotificationDialog([
         'status' => $status,
         'message1' => $message1,
@@ -74,9 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     . '<div class="col-lg-3">'
                                                         . '{error}'
                                                     . '</div>'
-                                                . '</div>', 
+                                                . '</div>',
                                 ]
-                        ]); ?>                    
+                        ]); ?>
 
                         <?= $form->field($model, 'date', [
                             'parts' => [
@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'parts' => [
                                 '{inputClass}' => 'col-lg-7'
                             ],
-                        ])->widget(MaskMoney::className()) ?>                    
+                        ])->widget(MaskMoney::className()) ?>
 
                         <div class="form-group">
                             <div class="row">
@@ -143,14 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    
+
     <?= $dynamicTableSDInvoicePayment->tableData() ?>
 
 </div>
-
-<?php
-$jscript = '
-    $("#supplierdeliveryinvoicepayment-date").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
-';
-
-$this->registerJs($jscript); ?>
